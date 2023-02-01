@@ -13,7 +13,8 @@
     "lint:eslint": "eslint src/**/*.{ts,vue} --cache --fix",
     "lint:style": "stylelint src/**/*.{css,less,vue} --cache --fix",
     "prepare": "husky install",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint --config commitlint.config.js -e -V"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,vue}": [
@@ -28,6 +29,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "@vitejs/plugin-vue": "^4.0.0",
