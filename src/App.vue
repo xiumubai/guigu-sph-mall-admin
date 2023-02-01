@@ -16,19 +16,22 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <style scoped lang="less">
 .logo {
-  height: 6em;
   padding: 1.5em;
+  height: 6em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
+
 a {
+  position: relative;
   top: 0;
   left: 0;
-  position: relative;
 }
 </style>
