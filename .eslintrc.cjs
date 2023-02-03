@@ -20,7 +20,18 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    'space-before-function-paren': ['error', 'never'],
-    semi: 0, // 结尾不要分号
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['index'],
+      },
+    ],
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+    '@typescript-eslint/semi': 'off',
+    'no-unexpected-multiline': 'error',
   },
 }
