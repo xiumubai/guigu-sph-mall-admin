@@ -31,6 +31,7 @@
 import { reactive, ref } from 'vue'
 import { useUserStore } from '@/store/modules/user'
 import type { FormInstance } from 'element-plus'
+
 const ruleFormRef = ref<FormInstance>()
 const userStore = useUserStore()
 const ruleForm = reactive({
@@ -58,7 +59,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      console.log(valid)
       userStore.login({
         ...ruleForm,
       })
