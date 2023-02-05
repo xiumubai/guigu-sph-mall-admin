@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import Login from '@/views/login/index.vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+// import SvgIcon from '@/components/SvgIcon/src/SvgIcon.vue'
 </script>
 
 <style scoped lang="less">
