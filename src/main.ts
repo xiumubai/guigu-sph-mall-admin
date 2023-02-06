@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import './style.less'
 import App from './App.vue'
+import '@/styles/index.less'
 import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'
 import 'virtual:svg-icons-register'
