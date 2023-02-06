@@ -1,4 +1,6 @@
-## vue3 项目集成模版
+## 1.0.0(2023-02-01)
+
+### ✨ Features
 
 - 集成了 eslint
 - 集成了 styleLint
