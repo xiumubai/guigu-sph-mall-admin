@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div>
-      <svg-icon name="home"></svg-icon>
-      首页
-    </div>
+    <div>401</div>
   </div>
 </template>
 
