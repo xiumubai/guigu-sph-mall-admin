@@ -71,5 +71,5 @@ const submitForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <style scoped lang="less">
-@import url("./index.less");
+@import url('./index.less');
 </style>

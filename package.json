@@ -20,10 +20,14 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,vue}": [
-      "prettier --write",
       "eslint --fix",
       "stylelint --fix",
+      "prettier --write",
       "git add"
+    ],
+    "*.{scss,less,styl,html}": [
+      "stylelint --fix",
+      "prettier --write"
     ]
   },
   "dependencies": {
