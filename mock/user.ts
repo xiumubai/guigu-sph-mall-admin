@@ -33,7 +33,7 @@ function createUserList() {
 export default [
   // 用户登录
   {
-    url: '/api/user/login',
+    url: '/dev-api/user/login',
     method: 'post',
     response: ({ body }) => {
       const { username, password } = body
@@ -51,7 +51,7 @@ export default [
   },
   // 获取用户信息
   {
-    url: '/api/user/info',
+    url: '/dev-api/user/info',
     method: 'get',
     response: (request) => {
       const token = getRequestToken(request)
@@ -68,7 +68,7 @@ export default [
   },
   // 一个失败的请求
   {
-    url: '/api/error',
+    url: '/dev-api/error',
     method: 'get',
     response: () => {
       return {

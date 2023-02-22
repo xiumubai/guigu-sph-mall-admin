@@ -2,7 +2,7 @@
  * @description: Login interface parameters
  */
 
-import type { UserInfo } from '@/types/store'
+import type { UserInfo } from '@/api/user/types'
 export interface LoginParams {
   username: string
   password: string

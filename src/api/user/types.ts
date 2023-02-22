@@ -10,9 +10,11 @@ export interface LoginRes {
 }
 
 /* 用户信息接口返回值类型 */
-export interface UserInfoRes {
-  userId: string
-  username: string
+export interface UserInfo {
+  userId?: string
+  name: string
+  buttons: string[]
+  roles: string[]
+  routes: string[]
   avatar: string
-  desc: string
 }

@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-03 14:54:34
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-03 14:59:38
+ * @LastEditTime: 2023-02-06 16:25:11
  * @Description:http请求枚举值
  */
 
@@ -14,7 +14,7 @@
  * @argument TYPE
  */
 export enum ResultEnum {
-  SUCCESS = 0,
+  SUCCESS = 20000,
   ERROR = -1,
   TIMEOUT = 401,
   TYPE = 'success',

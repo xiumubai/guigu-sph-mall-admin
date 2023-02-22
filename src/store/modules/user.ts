@@ -4,7 +4,7 @@ import { LoginParams } from './model/userModel'
 import { localSet, localGet } from '@/utils/cache'
 import { TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum'
 import type { UserState } from './model/userModel'
-import type { UserInfo } from '@/types/store'
+import type { UserInfo } from '@/api/user/types'
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
@@ -31,10 +31,8 @@ export const useUserStore = defineStore({
     async login(params: LoginParams) {
       try {
         const data = await login(params)
-
         const { token } = data
         this.setToken(token)
-        this.getUserInfoAction()
       } catch (error) {
         return Promise.reject(error)
       }

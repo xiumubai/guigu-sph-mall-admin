@@ -35,6 +35,7 @@
             <el-input
               v-model="ruleForm.password"
               type="password"
+              show-password
               :prefix-icon="Lock"
               autocomplete="off"
               placeholder="请输入密码"
@@ -45,6 +46,7 @@
               class="login-btn"
               type="primary"
               size="large"
+              :loading="loading"
               @click="submitForm(ruleFormRef)"
             >
               登陆
@@ -61,6 +63,7 @@ import { reactive, ref } from 'vue'
 import { useUserStore } from '@/store/modules/user'
 import type { FormInstance } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
+import { ElNotification } from 'element-plus'
 
 const ruleFormRef = ref<FormInstance>()
 const userStore = useUserStore()
@@ -68,31 +71,48 @@ const ruleForm = reactive({
   username: '',
   password: '',
 })
-const validatePass = (rule: any, value: any, callback: any) => {
+const loading = ref(false)
+const validateUsername = (rule: any, value: string, callback: any) => {
   if (value === '') {
-    callback(new Error('请输入密码'))
+    callback(new Error('用户名不能为空'))
+  } else if (value.length < 4) {
+    callback(new Error('用户名长度不能小于4位'))
   } else {
-    if (!ruleFormRef.value) return
-    ruleFormRef.value.validateField('checkPass', () => null)
+    callback()
+  }
+}
+
+const validatePassword = (rule: any, value: string, callback: any) => {
+  if (value === '') {
+    callback(new Error('密码不能为空'))
+  } else if (value.length < 6) {
+    callback(new Error('密码长度不能小于6位'))
+  } else {
     callback()
   }
 }
 
 const rules = reactive({
-  username: [{ required: true, message: '请输入用户名' }],
-  password: [{ required: true, validator: validatePass }],
+  username: [{ required: true, validator: validateUsername }],
+  password: [{ required: true, validator: validatePassword }],
 })
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
-    if (valid) {
+    if (!valid) return
+    try {
+      loading.value = true
       userStore.login({
         ...ruleForm,
       })
-    } else {
-      console.log('error submit!')
-      return false
+      ElNotification({
+        title: '登陆成功',
+        message: 'hi！欢迎回来',
+        type: 'success',
+      })
+    } finally {
+      loading.value = false
     }
   })
 }
