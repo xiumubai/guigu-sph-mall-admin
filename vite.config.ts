@@ -26,6 +26,14 @@ export default defineConfig((config) => {
         '@': path.resolve(__dirname, 'src'),
       },
     },
+    css: {
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true,
+          additionalData: '@import "./src/styles/variable.less";',
+        },
+      },
+    },
     server: {
       host: 'localhost',
       port: Number(env.VITE_APP_PORT),
