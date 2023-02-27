@@ -9,12 +9,25 @@ export interface LoginRes {
   token: string
 }
 
+export interface UserRes {
+  userId?: string
+  name: string
+  avatar: string
+  buttons: string[]
+  roles: string[]
+  routes: string[]
+}
+
+/** 用户权限数据类型 */
+export interface AuthInfo {
+  buttons: string[]
+  roles: string[]
+  routes: string[]
+}
+
 /* 用户信息接口返回值类型 */
 export interface UserInfo {
   userId?: string
   name: string
-  buttons: string[]
-  roles: string[]
-  routes: string[]
   avatar: string
 }

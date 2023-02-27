@@ -2,14 +2,13 @@
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-prettier",
-    "stylelint-config-recommended-less",
     "stylelint-config-standard-vue"
   ],
   "plugins": ["stylelint-order"],
   "overrides": [
     {
-      "files": ["**/*.(less|css|vue|html)"],
-      "customSyntax": "postcss-less"
+      "files": ["**/*.(scss|css|vue|html)"],
+      "customSyntax": "postcss-scss"
     },
     {
       "files": ["**/*.(html|vue)"],

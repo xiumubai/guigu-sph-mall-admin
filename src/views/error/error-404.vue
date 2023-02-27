@@ -32,7 +32,7 @@
             <div class="bullshit-oops">{{ state.oops }}</div>
             <div class="bullshit-headline">{{ state.headline }}</div>
             <div class="bullshit-info">{{ state.info }}</div>
-            <a class="bullshit-return-home" href="#/index">
+            <a class="bullshit-return-home">
               {{ state.jumpTime }}s&nbsp;{{ state.btn }}
             </a>
           </div>
@@ -75,7 +75,7 @@ function timeChange() {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .error-container {
   position: absolute;
   top: 40%;
@@ -100,7 +100,6 @@ function timeChange() {
           top: 17px;
           left: 220px;
           width: 80px;
-          opacity: 0;
           animation-name: cloud-left;
           animation-duration: 2s;
           animation-timing-function: linear;
@@ -112,7 +111,6 @@ function timeChange() {
           top: 10px;
           left: 420px;
           width: 46px;
-          opacity: 0;
           animation-name: cloud-mid;
           animation-duration: 2s;
           animation-timing-function: linear;
@@ -124,7 +122,6 @@ function timeChange() {
           top: 100px;
           left: 500px;
           width: 62px;
-          opacity: 0;
           animation-name: cloud-right;
           animation-duration: 2s;
           animation-timing-function: linear;
@@ -224,8 +221,7 @@ function timeChange() {
         font-size: 32px;
         font-weight: bold;
         line-height: 40px;
-        color: @base-color-blue;
-        opacity: 0;
+        color: $base-color-blue;
         animation-name: slideUp;
         animation-duration: 0.5s;
         animation-fill-mode: forwards;
@@ -248,8 +244,7 @@ function timeChange() {
         margin-bottom: 30px;
         font-size: 13px;
         line-height: 21px;
-        color: @base-color-gray;
-        opacity: 0;
+        color: $base-color-gray;
         animation-name: slide-up;
         animation-duration: 0.5s;
         animation-delay: 0.2s;
@@ -264,9 +259,8 @@ function timeChange() {
         font-size: 14px;
         text-align: center;
         color: #fff;
-        background: @base-color-blue;
+        background: $base-color-blue;
         border-radius: 100px;
-        opacity: 0;
         line-height: 36px;
         cursor: pointer;
         animation-name: slideUp;

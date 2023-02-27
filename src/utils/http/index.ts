@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 11:02:58
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-07 11:51:39
+ * @LastEditTime: 2023-02-24 20:58:19
  * @Description: axios请求封装
  */
 import axios from 'axios'
@@ -13,12 +13,13 @@ import type {
   AxiosResponse,
 } from 'axios'
 import { ElMessage } from 'element-plus'
-import { localGet } from '../cache'
-import { TOKEN_KEY } from '../../enums/cacheEnum'
+import { useUserStore } from '@/store/modules/user'
+import { ResultEnum } from '@/enums/httpEnums'
+import { ResultData } from './type'
 
 const service: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
-  timeout: 25000,
+  timeout: ResultEnum.TIMEOUT as number,
 })
 
 /**
@@ -27,9 +28,10 @@ const service: AxiosInstance = axios.create({
  */
 service.interceptors.request.use(
   (config) => {
-    const token = localGet(TOKEN_KEY)
+    const userStore = useUserStore()
+    const token = userStore.token
     if (token) {
-      config.headers.Authorization = `${token}`
+      config.headers.token = token
     }
     return config
   },
@@ -44,17 +46,12 @@ service.interceptors.request.use(
  */
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { code, message, data } = response.data
-
-    // 根据自定义错误码判断请求是否成功
-    if (code === 20000 || code === 200) {
-      // 将组件用的数据返回
-      return data
-    } else {
-      // 处理业务错误。
-      ElMessage.error(message || 'Error')
-      // return Promise.reject(new Error(message))
+    const { data } = response
+    if (data.code && data.code !== ResultEnum.SUCCESS) {
+      ElMessage.error(data.message || ResultEnum.ERRMESSAGE)
+      return Promise.reject(data)
     }
+    return data
   },
   (error: AxiosError) => {
     // 处理 HTTP 网络错误
@@ -88,27 +85,27 @@ service.interceptors.response.use(
  * @returns {*}
  */
 const http = {
-  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  get<T>(url: string, config?: AxiosRequestConfig): Promise<ResultData<T>> {
     return service.get(url, config)
   },
 
-  post<T = any>(
+  post<T>(
     url: string,
     data?: object,
     config?: AxiosRequestConfig,
-  ): Promise<T> {
+  ): Promise<ResultData<T>> {
     return service.post(url, data, config)
   },
 
-  put<T = any>(
+  put<T>(
     url: string,
     data?: object,
     config?: AxiosRequestConfig,
-  ): Promise<T> {
+  ): Promise<ResultData<T>> {
     return service.put(url, data, config)
   },
 
-  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  delete<T>(url: string, config?: AxiosRequestConfig): Promise<ResultData<T>> {
     return service.delete(url, config)
   },
 }

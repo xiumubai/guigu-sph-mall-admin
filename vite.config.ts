@@ -28,9 +28,9 @@ export default defineConfig((config) => {
     },
     css: {
       preprocessorOptions: {
-        less: {
+        scss: {
           javascriptEnabled: true,
-          additionalData: '@import "./src/styles/variable.less";',
+          additionalData: '@import "./src/styles/variable.scss";',
         },
       },
     },

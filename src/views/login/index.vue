@@ -60,11 +60,16 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import type { FormInstance } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ElNotification } from 'element-plus'
+import { HOME_URL } from '@/config/config'
+import { login } from '@/api'
 
+const router = useRouter()
+const route = useRoute()
 const ruleFormRef = ref<FormInstance>()
 const userStore = useUserStore()
 const ruleForm = reactive({
@@ -99,13 +104,13 @@ const rules = reactive({
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (!valid) return
     try {
       loading.value = true
-      userStore.login({
-        ...ruleForm,
-      })
+      const { data } = await login(ruleForm)
+      userStore.setToken(data.token)
+      router.replace((route.query.redirect as string) || HOME_URL)
       ElNotification({
         title: '登陆成功',
         message: 'hi！欢迎回来',
@@ -118,6 +123,6 @@ const submitForm = (formEl: FormInstance | undefined) => {
 }
 </script>
 
-<style scoped lang="less">
-@import url('./index.less');
+<style scoped lang="scss">
+@import url('./index.scss');
 </style>

@@ -1,49 +1,49 @@
+/*
+ * @Author: 朽木白
+ * @Date: 2023-02-06 11:02:58
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-02-24 21:05:18
+ * @Description: 用户store
+ */
 import { defineStore } from 'pinia'
-import { login, getUserInfo } from '@/api'
-import { LoginParams } from './model/userModel'
-import { localSet, localGet } from '@/utils/cache'
-import { TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum'
+import { getUserInfo } from '@/api'
 import type { UserState } from './model/userModel'
 import type { UserInfo } from '@/api/user/types'
+import { useAuthStore } from './auth'
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
+    token: '',
     userInfo: null,
-    token: undefined,
   }),
-  getters: {
-    getUserInfo(): UserInfo {
-      return (this.userInfo as UserInfo) || localGet(USER_INFO_KEY) || {}
-    },
-    getToken(): string {
-      return (this.token as string) || localGet(TOKEN_KEY) || ''
-    },
-  },
   actions: {
-    setToken(token: string | undefined) {
-      this.token = token ? token : ''
-      localSet(TOKEN_KEY, token)
+    // setToken
+    setToken(token: string) {
+      this.token = token
     },
-    setUserInfo(info: UserInfo) {
-      this.userInfo = info
-      localSet(USER_INFO_KEY, info)
+    // setUserInfo
+    setUserInfo(userInfo: UserInfo) {
+      this.userInfo = userInfo
     },
-    async login(params: LoginParams) {
+    // 重置用户信息
+    resetUser() {
+      this.token = ''
+      this.userInfo = null
+    },
+    async GetInfoAction() {
       try {
-        const data = await login(params)
-        const { token } = data
-        this.setToken(token)
+        const { data } = await getUserInfo()
+        const { avatar, buttons, name, roles, routes } = data
+        const authStore = useAuthStore()
+        // 存储用户信息
+        this.setUserInfo({ avatar, name })
+        // 存储用户权限信息
+        authStore.setAuth({ buttons, roles, routes })
       } catch (error) {
-        return Promise.reject(error)
-      }
-    },
-    async getUserInfoAction() {
-      try {
-        const data = await getUserInfo()
-        this.setUserInfo(data)
-      } catch (error) {
-        return Promise.reject(error)
+        Promise.reject(error)
       }
     },
   },
+  // 设置为true，缓存state
+  persist: true,
 })

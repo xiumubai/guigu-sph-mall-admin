@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <div>
-      <svg-icon name="home"></svg-icon>
-      首页
-    </div>
-
+  <div class="common-layout">
     <el-container>
       <el-aside width="200px">Aside</el-aside>
       <el-container>
@@ -16,6 +11,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// import SvgIcon from '@/components/SvgIcon/src/SvgIcon.vue'
-</script>
+<script setup lang="ts"></script>
+
+<style scoped lang="scss">
+.common-layout {
+  background-color: #fff;
+}
+</style>

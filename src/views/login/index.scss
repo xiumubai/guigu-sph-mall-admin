@@ -1,5 +1,3 @@
-@import url('@/styles/variable.less');
-
 .login-container {
   height: 100vh;
   background: url('@/assets/images/background.jpg') center center fixed
@@ -45,41 +43,41 @@
         opacity: 0.9;
       }
     }
+  }
 
-    ::v-deep {
-      .el-form-item {
-        padding-right: 0;
-        margin: 20px 0;
-        color: #454545;
-        border: 1px solid transparent;
-        border-radius: 2px;
+  ::v-deep(.el-form) {
+    .el-form-item {
+      padding-right: 0;
+      margin: 20px 0;
+      color: #454545;
+      border: 1px solid transparent;
+      border-radius: 2px;
 
-        &__content {
-          min-height: @base-input-height;
-          line-height: @base-input-height;
-        }
-
-        &__error {
-          position: absolute;
-          top: 100%;
-          left: 18px;
-          font-size: @base-font-size-small;
-          line-height: 18px;
-          color: @base-color-red;
-        }
+      &__content {
+        min-height: $base-input-height;
+        line-height: $base-input-height;
       }
 
-      .el-input {
-        box-sizing: border-box;
+      &__error {
+        position: absolute;
+        top: 100%;
+        left: 18px;
+        font-size: $base-font-size-small;
+        line-height: 18px;
+        color: $base-color-red;
+      }
+    }
 
-        input {
-          height: 48px;
-          font-size: @base-font-size-default;
-          line-height: 58px;
-          color: @base-font-color;
-          border: 0;
-          caret-color: @base-font-color;
-        }
+    .el-input {
+      box-sizing: border-box;
+
+      input {
+        height: 48px;
+        font-size: $base-font-size-default;
+        line-height: 58px;
+        color: $base-font-color;
+        border: 0;
+        caret-color: $base-font-color;
       }
     }
   }

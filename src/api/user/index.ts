@@ -1,5 +1,5 @@
 import http from '@/utils/http'
-import type { LoginData, LoginRes, UserInfo } from './types'
+import type { LoginData, LoginRes, UserRes } from './types'
 
 /**
  * 登录
@@ -12,5 +12,5 @@ export function login(data: LoginData) {
  * 获取登录用户信息
  */
 export function getUserInfo() {
-  return http.get<UserInfo>('/admin/acl/index/info')
+  return http.get<UserRes>('/admin/acl/index/info')
 }
