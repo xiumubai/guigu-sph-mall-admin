@@ -124,5 +124,5 @@ const submitForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <style scoped lang="scss">
-@import url('./index.scss');
+@import './index';
 </style>
