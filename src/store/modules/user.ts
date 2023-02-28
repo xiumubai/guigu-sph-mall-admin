@@ -2,11 +2,11 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 11:02:58
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-24 21:05:18
+ * @LastEditTime: 2023-02-28 22:46:55
  * @Description: 用户store
  */
 import { defineStore } from 'pinia'
-import { getUserInfo } from '@/api'
+import { getUserInfo, logout } from '@/api'
 import type { UserState } from './model/userModel'
 import type { UserInfo } from '@/api/user/types'
 import { useAuthStore } from './auth'
@@ -39,6 +39,14 @@ export const useUserStore = defineStore({
         this.setUserInfo({ avatar, name })
         // 存储用户权限信息
         authStore.setAuth({ buttons, roles, routes })
+      } catch (error) {
+        Promise.reject(error)
+      }
+    },
+    async Logout() {
+      try {
+        await logout()
+        this.resetUser()
       } catch (error) {
         Promise.reject(error)
       }

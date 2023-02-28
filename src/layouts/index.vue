@@ -20,8 +20,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { computed } from 'vue'
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
 
 import LayoutFooter from './Footer/index.vue'
@@ -30,8 +30,22 @@ import LayoutSideBar from './SideBar/index.vue'
 import LayoutNavBar from './NavBar/index.vue'
 import LayoutTabsBar from './TabsBar/index.vue'
 
-const settingsStore = useSettingsStore()
-const collapse = computed(() => settingsStore.collapse)
+export default defineComponent({
+  components: {
+    LayoutFooter,
+    LayoutMain,
+    LayoutSideBar,
+    LayoutNavBar,
+    LayoutTabsBar,
+  },
+  setup() {
+    const settingsStore = useSettingsStore()
+    const collapse = computed(() => settingsStore.collapse)
+    return {
+      collapse,
+    }
+  },
+})
 </script>
 
 <style scoped lang="scss">

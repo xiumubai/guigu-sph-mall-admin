@@ -14,3 +14,10 @@ export function login(data: LoginData) {
 export function getUserInfo() {
   return http.get<UserRes>('/admin/acl/index/info')
 }
+
+/**
+ * 退出登陆
+ */
+export function logout() {
+  return http.post('/admin/acl/index/logout')
+}

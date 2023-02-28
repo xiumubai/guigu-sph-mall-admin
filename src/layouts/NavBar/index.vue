@@ -9,7 +9,9 @@
         </div>
       </el-col>
       <el-col :sm="12" :md="12" :lg="12" :xl="12">
-        <div class="right-panel">right</div>
+        <div class="right-panel">
+          <User />
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -19,14 +21,18 @@
 import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
 import { Expand, Fold } from '@element-plus/icons-vue'
+import User from './components/User/index.vue'
 export default defineComponent({
   components: {
     Expand,
     Fold,
+    User,
   },
   setup() {
     const settingsStore = useSettingsStore()
+
     const collapse = computed(() => settingsStore.collapse)
+
     function handleCollapse() {
       settingsStore.changeCollapse()
     }
@@ -64,9 +70,10 @@ export default defineComponent({
 
   .right-panel {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-items: center;
-    height: 60px;
+    height: $base-nav-bar-height;
+    align-content: center;
   }
 }
 </style>
