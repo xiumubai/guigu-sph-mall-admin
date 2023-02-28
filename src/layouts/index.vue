@@ -1,11 +1,12 @@
 <template>
   <div class="layout-admin-wrapper">
     <div class="layout-container-vertical fixed">
-      <div class="layout-sidebar-container">
-        <LayoutSideBar />
-      </div>
-      <div class="layout-main">
-        <div class="layout-header fixed-header">
+      <LayoutSideBar />
+      <div class="layout-main" :class="{ 'is-collapse': collapse }">
+        <div
+          class="layout-header fixed-header"
+          :class="{ 'is-collapse': collapse }"
+        >
           <LayoutNavBar />
           <LayoutTabsBar />
         </div>
@@ -20,11 +21,17 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useSettingsStore } from '@/store/modules/settings'
+
 import LayoutFooter from './Footer/index.vue'
 import LayoutMain from './Main/index.vue'
 import LayoutSideBar from './SideBar/index.vue'
 import LayoutNavBar from './NavBar/index.vue'
 import LayoutTabsBar from './TabsBar/index.vue'
+
+const settingsStore = useSettingsStore()
+const collapse = computed(() => settingsStore.collapse)
 </script>
 
 <style scoped lang="scss">
@@ -50,26 +57,22 @@ import LayoutTabsBar from './TabsBar/index.vue'
       padding-top: calc(#{$base-top-bar-height} + #{$base-tabs-bar-height});
     }
 
-    .layout-sidebar-container {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: $base-z-index;
-      width: $base-left-menu-width;
-      height: 100vh;
-      background: $base-menu-background;
-      box-shadow: 2px 0 6px rgb(0 21 41 / 35%);
-      transition: width $base-transition-time;
-    }
-
     .layout-main {
       margin-left: $base-left-menu-width;
       min-height: 100%;
 
+      &.is-collapse {
+        margin-left: $base-left-menu-width-min;
+        border-right: 0;
+      }
+
       .layout-header {
         &.fixed-header {
           @include fix-header;
+        }
+
+        &.is-collapse {
+          width: calc(100% - $base-left-menu-width-min);
         }
       }
 

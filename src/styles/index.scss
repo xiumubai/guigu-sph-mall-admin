@@ -1,4 +1,4 @@
-@import './reset.scss';
+@import './reset';
 
 html body,
 #app {
@@ -16,4 +16,5 @@ html body,
 
 :root {
   --el-color-white: #fff;
+  --el-color-grey: rgb(0 0 0 / 65%);
 }
