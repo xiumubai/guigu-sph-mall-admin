@@ -11,15 +11,7 @@
           <section class="app-mian-height">
             <div class="index">main</div>
           </section>
-          <div class="layout-footer-container">
-            Copyright
-            <svg-icon
-              name="copyright"
-              size="16px"
-              color="rgba(0, 0, 0, 0.45)"
-            />
-            尚品汇开源版本2023
-          </div>
+          <LayoutFooter />
         </div>
       </div>
     </div>
@@ -27,7 +19,9 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LayoutFooter from './Footer/index.vue'
+</script>
 
 <style scoped lang="scss">
 @mixin fix-header {
@@ -110,17 +104,6 @@
           .index {
             height: 1500px;
           }
-        }
-
-        .layout-footer-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 0 20px;
-          min-height: 55px;
-          color: rgb(0 0 0 / 45%);
-          background: var(--el-color-white);
-          border-top: 1px dashed #dcdfe6;
         }
       }
     }
