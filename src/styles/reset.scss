@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 14:09:57
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-27 09:34:45
+ * @LastEditTime: 2023-02-28 16:18:12
  * @Description: 样式重置
  */
 
@@ -46,7 +46,8 @@ main {
  */
 
 h1 {
-  margin: 0.67em 0;
+  margin-top: 0;
+  margin-bottom: 0;
   font-size: 2em;
 }
 
@@ -82,6 +83,7 @@ pre {
  */
 
 a {
+  color: #1890ff;
   background-color: transparent;
 }
 

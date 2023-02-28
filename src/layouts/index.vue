@@ -1,16 +1,16 @@
 <template>
   <div class="layout-admin-wrapper">
     <div class="layout-container-vertical fixed">
-      <div class="layout-sidebar-container">sidebar</div>
+      <div class="layout-sidebar-container">
+        <LayoutSideBar />
+      </div>
       <div class="layout-main">
         <div class="layout-header fixed-header">
-          <div class="nav-bar-container">nav</div>
-          <div class="tabs-bar-container">tabs</div>
+          <LayoutNavBar />
+          <LayoutTabsBar />
         </div>
         <div class="app-main-container">
-          <section class="app-mian-height">
-            <div class="index">main</div>
-          </section>
+          <LayoutMain />
           <LayoutFooter />
         </div>
       </div>
@@ -21,6 +21,10 @@
 
 <script setup lang="ts">
 import LayoutFooter from './Footer/index.vue'
+import LayoutMain from './Main/index.vue'
+import LayoutSideBar from './SideBar/index.vue'
+import LayoutNavBar from './NavBar/index.vue'
+import LayoutTabsBar from './TabsBar/index.vue'
 </script>
 
 <style scoped lang="scss">
@@ -67,44 +71,10 @@ import LayoutFooter from './Footer/index.vue'
         &.fixed-header {
           @include fix-header;
         }
-
-        .nav-bar-container {
-          position: relative;
-          overflow: hidden;
-          padding-right: $base-padding;
-          padding-left: $base-padding;
-          height: $base-nav-bar-height;
-          background: $base-color-white;
-          box-shadow: $base-box-shadow;
-          user-select: none;
-        }
-
-        .tabs-bar-container {
-          position: relative;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding-right: $base-padding;
-          padding-left: $base-padding;
-          height: $base-tabs-bar-height;
-          background: $base-color-white;
-          box-sizing: border-box;
-          align-content: center;
-          user-select: none;
-          border-top: 1px solid #f6f6f6;
-        }
       }
 
       .app-main-container {
         padding: 20px;
-
-        .app-mian-height {
-          min-height: $base-app-main-height;
-
-          .index {
-            height: 1500px;
-          }
-        }
       }
     }
   }
