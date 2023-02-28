@@ -15,7 +15,7 @@ declare namespace Menu {
   }
   interface MetaProps {
     icon: string
-    title: string
+    name: string
     activeMenu?: string
     isLink?: string
     isHide: boolean

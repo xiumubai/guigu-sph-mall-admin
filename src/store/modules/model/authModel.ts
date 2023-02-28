@@ -3,6 +3,6 @@ export interface AuthState {
   routeName: string
   roles: string[]
   authButtonList: string[]
-  authMenuList: string[]
+  authMenuList: Menu.MenuOptions[]
   authRouterList: string[]
 }

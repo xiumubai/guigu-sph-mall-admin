@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-25 21:51:24
+ * @LastEditTime: 2023-02-27 14:43:51
  * @Description: 静态路由
  */
 
@@ -18,17 +18,26 @@ export const staticRoutes: Array<RouteRecordRaw> = [
   {
     path: LOGIN_URL,
     name: 'login',
+    meta: {
+      isHide: true,
+    },
     component: () => import('@/views/login/index.vue'),
   },
   {
     path: '/404',
     name: '404',
+    meta: {
+      isHide: true,
+    },
     component: () => import('@/views/error/error-404.vue'),
   },
   {
     path: '/',
     component: LAYOUT,
     redirect: HOME_URL,
+    meta: {
+      name: 'Dashboard',
+    },
     children: [
       {
         path: 'index',
@@ -42,6 +51,9 @@ export const staticRoutes: Array<RouteRecordRaw> = [
     path: '/:pathMatch(.*)*',
     name: 'notFound',
     redirect: { name: '404' },
+    meta: {
+      isHide: true,
+    },
   },
 ]
 

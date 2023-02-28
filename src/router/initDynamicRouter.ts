@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 15:32:50
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-27 09:15:06
+ * @LastEditTime: 2023-02-27 14:18:58
  * @Description:获取路由权限列表
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -13,7 +13,7 @@ import { LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/config'
 import { useAuthStore } from '@/store/modules/auth'
 import { useUserStore } from '@/store/modules/user'
 import { dynamicRoutes } from './dynamicRoutes'
-import { notFoundRouter } from './constantRoutes'
+import { notFoundRouter, staticRoutes } from './constantRoutes'
 /**
  * @description 路由拦截
  */
@@ -96,6 +96,14 @@ const initDynamicRouter = async () => {
 
     // 4.添加notFound路由
     router.addRoute(notFoundRouter)
+
+    // 5.处理subMenu数据,静态路由和动态路由拼接，过滤isHide=true的路由
+    const menuList = getMenuList([
+      ...staticRoutes,
+      ...routerList,
+    ] as unknown as Menu.MenuOptions[])
+    console.log('menuList', menuList)
+    authStore.setAuthMenuList(menuList)
   } catch (error) {
     // 当按钮 || 菜单请求出错时，重定向到登陆页
     userStore.resetUser()
@@ -104,7 +112,9 @@ const initDynamicRouter = async () => {
   }
 }
 
-// 路由过滤
+/**
+ * @description 路由过滤
+ */
 function filterAsyncRoutes(
   dynamicRoutes: RouteRecordRaw[],
   authRouterList: string[],
@@ -118,5 +128,17 @@ function filterAsyncRoutes(
       route.children = filterAsyncRoutes(route.children, authRouterList)
     }
     return true
+  })
+}
+
+/**
+ * @description menu过滤
+ */
+function getMenuList(menuList: Menu.MenuOptions[]) {
+  const newMenuList: Menu.MenuOptions[] = JSON.parse(JSON.stringify(menuList))
+
+  return newMenuList.filter((item) => {
+    item.children?.length && (item.children = getMenuList(item.children))
+    return !item.meta?.isHide
   })
 }

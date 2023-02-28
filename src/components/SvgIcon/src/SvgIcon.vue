@@ -52,6 +52,7 @@ const getStyle = computed((): CSSProperties => {
   overflow: hidden;
   vertical-align: -0.15em;
   fill: currentcolor;
+  margin: 0 5px;
 }
 
 .svg-icon-spin {

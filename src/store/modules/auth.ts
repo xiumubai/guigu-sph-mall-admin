@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 11:28:38
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-25 14:30:58
+ * @LastEditTime: 2023-02-27 11:49:59
  * @Description: 用户权限store
  */
 
@@ -19,10 +19,10 @@ export const useAuthStore = defineStore({
     roles: [],
     // 后端返回的按钮权限列表
     authButtonList: [],
-    // 处理之后侧边栏菜单列表
-    authMenuList: [],
     // 后端返回的路由列表
     authRouterList: [],
+    // 处理之后侧边栏菜单列表
+    authMenuList: [],
   }),
 
   actions: {
@@ -35,6 +35,9 @@ export const useAuthStore = defineStore({
       this.roles = authInfo.roles
       this.authButtonList = authInfo.buttons
       this.authRouterList = authInfo.routes
+    },
+    setAuthMenuList(list: Menu.MenuOptions[]) {
+      this.authMenuList = list
     },
   },
   // 设置为true，缓存state
