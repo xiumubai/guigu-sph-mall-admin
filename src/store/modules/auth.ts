@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 11:28:38
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-27 11:49:59
+ * @LastEditTime: 2023-02-28 23:16:42
  * @Description: 用户权限store
  */
 
@@ -30,6 +30,10 @@ export const useAuthStore = defineStore({
     setRouteName(name: string) {
       this.routeName = name
     },
+
+    resetAuth() {
+      this.authRouterList = []
+    },
     // 设置用户权限信息
     setAuth(authInfo: AuthInfo) {
       this.roles = authInfo.roles
@@ -40,6 +44,4 @@ export const useAuthStore = defineStore({
       this.authMenuList = list
     },
   },
-  // 设置为true，缓存state
-  persist: true,
 })

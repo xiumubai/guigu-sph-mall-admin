@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 15:32:50
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-27 14:18:58
+ * @LastEditTime: 2023-02-28 23:14:05
  * @Description:获取路由权限列表
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -38,6 +38,8 @@ router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
   authStore.setRouteName(to.name as string)
   if (!authStore.authRouterList.length) {
+    console.log(1)
+
     await initDynamicRouter()
     return next({ ...to, replace: true })
   }
@@ -88,7 +90,6 @@ const initDynamicRouter = async () => {
       authStore.authRouterList,
     )
 
-    console.log(routerList)
     // 3.添加动态路由
     routerList.forEach((route) => {
       router.addRoute(route as unknown as RouteRecordRaw)
