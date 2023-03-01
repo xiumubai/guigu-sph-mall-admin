@@ -1,11 +1,13 @@
 <template>
   <div class="layout-sidebar-container" :class="{ 'is-collapse': collapse }">
     <logo />
+
     <el-scrollbar>
       <el-menu
         background-color="#001529"
         text-color="hsla(0,0%,100%,.65)"
         active-text-color="#fff"
+        :defaultActive="activeMenu"
         :collapse="collapse"
       >
         <sub-menu :menuList="menuList"></sub-menu>
@@ -18,6 +20,7 @@
 import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useAuthStore } from '@/store/modules/auth'
+import { useRoute } from 'vue-router'
 import Logo from '../Logo/index.vue'
 import SubMenu from './components/SubMenu/index.vue'
 
@@ -29,12 +32,16 @@ export default defineComponent({
   setup() {
     const settingsStore = useSettingsStore()
     const authStore = useAuthStore()
+    const route = useRoute()
     const collapse = computed(() => settingsStore.collapse)
     const menuList = computed(() => authStore.authMenuList)
-
+    const activeMenu = computed(() =>
+      route.meta.activeMenu ? (route.meta.activeMenu as string) : route.path,
+    )
     return {
       menuList,
       collapse,
+      activeMenu,
     }
   },
 })

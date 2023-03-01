@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 15:32:50
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-28 23:14:05
+ * @LastEditTime: 2023-03-01 21:03:41
  * @Description:获取路由权限列表
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -38,8 +38,6 @@ router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
   authStore.setRouteName(to.name as string)
   if (!authStore.authRouterList.length) {
-    console.log(1)
-
     await initDynamicRouter()
     return next({ ...to, replace: true })
   }

@@ -55,8 +55,6 @@ export default [
     method: 'get',
     response: (request) => {
       const token = getRequestToken(request)
-      console.log(token)
-
       const checkUser = createUserList().find((item) => item.token === token)
       if (!checkUser) {
         return resultError(
