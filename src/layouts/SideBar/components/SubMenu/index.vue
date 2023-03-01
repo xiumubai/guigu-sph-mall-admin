@@ -10,6 +10,7 @@
         </el-icon>
         <span>{{ subItem.meta.title }}</span>
       </template>
+      <!-- 有children递归本次组件 -->
       <sub-menu :menuList="subItem.children" />
     </el-sub-menu>
     <el-menu-item
@@ -30,6 +31,7 @@
 <script lang="ts">
 import { Menu } from '@element-plus/icons-vue'
 import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'SubMenu',
@@ -42,8 +44,11 @@ export default defineComponent({
     },
   },
   setup() {
+    const router = useRouter()
     function handleClickMenu(subItem: Menu.MenuOptions) {
-      console.log(subItem)
+      // 跳转外部链接
+      if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank')
+      router.push(subItem.path)
     }
     return {
       handleClickMenu,

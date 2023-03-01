@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-01 16:49:20
+ * @LastEditTime: 2023-03-01 17:52:27
  * @Description: 动态路由
  */
 
@@ -24,7 +24,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     children: [
       {
         name: 'User',
-        path: 'user',
+        path: '/acl/user',
         component: () => import('@/views/acl/user/index.vue'),
         meta: {
           title: '用户管理',
@@ -33,7 +33,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
       {
         name: 'Role',
-        path: 'role',
+        path: '/acl/role',
         component: () => import('@/views/acl/role/index.vue'),
         meta: {
           title: '角色管理',
@@ -42,7 +42,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
       {
         name: 'Permission',
-        path: 'permission',
+        path: '/acl/permission',
         component: () => import('@/views/acl/permission/index.vue'),
         meta: {
           title: '菜单管理',

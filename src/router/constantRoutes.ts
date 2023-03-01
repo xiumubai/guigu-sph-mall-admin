@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-01 16:46:33
+ * @LastEditTime: 2023-03-01 17:55:28
  * @Description: 静态路由
  */
 
@@ -42,9 +42,13 @@ export const staticRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: '/index',
-        name: 'index',
+        name: 'Index',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页', icon: 'HomeFilled', affix: true },
+        meta: {
+          title: '首页',
+          icon: 'HomeFilled',
+          affix: true,
+        },
       },
     ],
   },
