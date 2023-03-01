@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-27 14:43:51
+ * @LastEditTime: 2023-03-01 16:46:33
  * @Description: 静态路由
  */
 
@@ -14,7 +14,7 @@ const LAYOUT = () => import('@/layouts/index.vue')
 /**
  * @description 静态路由
  */
-export const staticRoutes: Array<RouteRecordRaw> = [
+export const staticRoutes: RouteRecordRaw[] = [
   {
     path: LOGIN_URL,
     name: 'login',
@@ -36,24 +36,17 @@ export const staticRoutes: Array<RouteRecordRaw> = [
     component: LAYOUT,
     redirect: HOME_URL,
     meta: {
-      name: 'Dashboard',
+      title: '首页',
+      icon: 'HomeFilled',
     },
     children: [
       {
-        path: 'index',
-        name: 'Dashboard',
+        path: '/index',
+        name: 'index',
         component: () => import('@/views/home/index.vue'),
-        meta: { title: '首页', icon: 'dashboard', affix: true },
+        meta: { title: '首页', icon: 'HomeFilled', affix: true },
       },
     ],
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'notFound',
-    redirect: { name: '404' },
-    meta: {
-      isHide: true,
-    },
   },
 ]
 
@@ -63,5 +56,5 @@ export const staticRoutes: Array<RouteRecordRaw> = [
 export const notFoundRouter = {
   path: '/:pathMatch(.*)*',
   name: 'notFound',
-  redirect: { name: '404' },
+  redirect: '404',
 }

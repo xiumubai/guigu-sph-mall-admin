@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-25 17:20:10
+ * @LastEditTime: 2023-03-01 16:49:20
  * @Description: 动态路由
  */
 
@@ -19,7 +19,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: '/acl/user',
     meta: {
       title: '权限管理',
-      icon: 'el-icon-lock',
+      icon: 'Lock',
     },
     children: [
       {
@@ -28,6 +28,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/acl/user/index.vue'),
         meta: {
           title: '用户管理',
+          icon: 'UserFilled',
         },
       },
       {
@@ -36,6 +37,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/acl/role/index.vue'),
         meta: {
           title: '角色管理',
+          icon: 'Avatar',
         },
       },
       {
@@ -44,6 +46,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/acl/permission/index.vue'),
         meta: {
           title: '菜单管理',
+          icon: 'Menu',
         },
       },
     ],

@@ -63,17 +63,13 @@ export default defineComponent({
   height: 100%;
 
   .layout-container-vertical {
-    position: relative;
-    width: 100%;
-    height: 100%;
-
     &.fixed {
       padding-top: calc(#{$base-top-bar-height} + #{$base-tabs-bar-height});
     }
 
     .layout-main {
-      margin-left: $base-left-menu-width;
       min-height: 100%;
+      margin-left: $base-left-menu-width;
 
       &.is-collapse {
         margin-left: $base-left-menu-width-min;
@@ -92,6 +88,7 @@ export default defineComponent({
 
       .app-main-container {
         padding: 20px;
+        overflow: hidden;
       }
     }
   }

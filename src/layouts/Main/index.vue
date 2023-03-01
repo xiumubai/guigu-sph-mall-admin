@@ -17,9 +17,5 @@ export default defineComponent({
 <style scoped lang="scss">
 .app-mian-height {
   min-height: $base-app-main-height;
-
-  .index {
-    height: 1500px;
-  }
 }
 </style>

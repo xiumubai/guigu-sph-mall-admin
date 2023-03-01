@@ -1,21 +1,39 @@
 <template>
   <div class="layout-sidebar-container" :class="{ 'is-collapse': collapse }">
-    <Logo />
+    <logo />
+    <el-scrollbar>
+      <el-menu
+        background-color="#001529"
+        text-color="hsla(0,0%,100%,.65)"
+        active-text-color="#fff"
+        :collapse="collapse"
+      >
+        <sub-menu :menuList="menuList"></sub-menu>
+      </el-menu>
+    </el-scrollbar>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
+import { useAuthStore } from '@/store/modules/auth'
 import Logo from '../Logo/index.vue'
+import SubMenu from './components/SubMenu/index.vue'
+
 export default defineComponent({
   components: {
     Logo,
+    SubMenu,
   },
   setup() {
     const settingsStore = useSettingsStore()
+    const authStore = useAuthStore()
     const collapse = computed(() => settingsStore.collapse)
+    const menuList = computed(() => authStore.authMenuList)
+
     return {
+      menuList,
       collapse,
     }
   },
@@ -23,6 +41,17 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@mixin active {
+  &:hover {
+    color: $base-color-white;
+  }
+
+  &.is-active {
+    color: $base-color-white;
+    background-color: $base-menu-background-active !important;
+  }
+}
+
 .layout-sidebar-container {
   position: fixed;
   top: 0;
@@ -38,6 +67,40 @@ export default defineComponent({
   &.is-collapse {
     width: $base-left-menu-width-min;
     border-right: 0;
+  }
+
+  ::v-deep {
+    .el-scrollbar__wrap {
+      overflow-x: hidden;
+    }
+
+    .el-menu {
+      border: 0;
+
+      .vab-fas-icon {
+        padding-right: 3px;
+        font-size: $base-font-size-default;
+      }
+
+      .vab-remix-icon {
+        padding-right: 3px;
+        font-size: $base-font-size-default + 2;
+      }
+    }
+
+    .el-menu-item,
+    .el-submenu__title {
+      height: $base-menu-item-height;
+      overflow: hidden;
+      line-height: $base-menu-item-height;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    .el-menu-item {
+      @include active;
+    }
   }
 }
 </style>
