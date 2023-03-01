@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { ArrowUp, ArrowDown } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -32,6 +32,7 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter()
+    const route = useRoute()
     const userStore = useUserStore()
 
     const { name, avatar } = userStore.userInfo || {}
@@ -56,7 +57,7 @@ export default defineComponent({
       }).then(async () => {
         await userStore.Logout()
         localStorage.clear()
-        router.replace(LOGIN_URL)
+        router.push({ path: LOGIN_URL, query: { redirect: route.fullPath } })
         ElMessage.success('退出登录成功！')
       })
     }
@@ -74,12 +75,12 @@ export default defineComponent({
 <style scoped lang="scss">
 .avatar-dropdown {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  height: 50px;
   align-content: center;
+  align-items: center;
+  justify-content: center;
   justify-items: center;
+  height: 50px;
+  padding: 0;
 
   .user-avatar {
     width: 40px;
