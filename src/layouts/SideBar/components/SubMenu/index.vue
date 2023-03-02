@@ -1,7 +1,7 @@
 <template>
   <template v-for="subItem in menuList" :key="subItem.path">
     <el-sub-menu
-      v-if="subItem.children && subItem.children.length > 0"
+      v-if="subItem.children && subItem.children.length > 1"
       :index="subItem.path"
     >
       <template #title>
@@ -48,6 +48,12 @@ export default defineComponent({
     function handleClickMenu(subItem: Menu.MenuOptions) {
       // 跳转外部链接
       if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank')
+      // 判断只有一级的话，直接跳转子级相关信息
+      // const { children } = subItem
+      // if (children?.length === 1) {
+      //   router.push(children[0].path)
+      //   return
+      // }
       router.push(subItem.path)
     }
     return {
