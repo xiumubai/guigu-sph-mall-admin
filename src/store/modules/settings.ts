@@ -12,11 +12,15 @@ export const useSettingsStore = defineStore({
   id: 'app-settings',
   state: (): SettingsState => ({
     collapse: false,
+    refresh: false, // 刷新页面
   }),
 
   actions: {
     changeCollapse() {
       this.collapse = !this.collapse
+    },
+    setRefresh() {
+      this.refresh = !this.refresh
     },
   },
 })

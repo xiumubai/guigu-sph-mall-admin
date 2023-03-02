@@ -6,10 +6,12 @@
           <el-icon class="fold-unfold" @click="handleCollapse">
             <component :is="collapse ? 'Expand' : 'Fold'"></component>
           </el-icon>
+          <Hamburger />
         </div>
       </el-col>
       <el-col :sm="12" :md="12" :lg="12" :xl="12">
         <div class="right-panel">
+          <Actions />
           <User />
         </div>
       </el-col>
@@ -22,11 +24,15 @@ import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import User from './components/User/index.vue'
+import Hamburger from './components/Hamburger/index.vue'
+import Actions from './components/Acions/index.vue'
 export default defineComponent({
   components: {
     Expand,
+    Actions,
     Fold,
     User,
+    Hamburger,
   },
   setup() {
     const settingsStore = useSettingsStore()
@@ -47,13 +53,13 @@ export default defineComponent({
 <style scoped lang="scss">
 .nav-bar-container {
   position: relative;
-  overflow: hidden;
+  height: $base-nav-bar-height;
   padding-right: $base-padding;
   padding-left: $base-padding;
-  height: $base-nav-bar-height;
+  overflow: hidden;
+  user-select: none;
   background: $base-color-white;
   box-shadow: $base-box-shadow;
-  user-select: none;
 
   .left-panel {
     display: flex;
@@ -70,10 +76,10 @@ export default defineComponent({
 
   .right-panel {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: $base-nav-bar-height;
     align-content: center;
+    align-items: center;
+    justify-content: flex-end;
+    height: $base-nav-bar-height;
   }
 }
 </style>
