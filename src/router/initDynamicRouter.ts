@@ -2,13 +2,13 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 15:32:50
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-01 21:03:41
+ * @LastEditTime: 2023-03-03 13:55:19
  * @Description:获取路由权限列表
  */
 import { RouteRecordRaw } from 'vue-router'
 import router from './index'
 import NProgress from '@/config/nprogress'
-import { ElNotification } from 'element-plus'
+// import { ElNotification } from 'element-plus'
 import { LOGIN_URL, ROUTER_WHITE_LIST } from '@/config/config'
 import { useAuthStore } from '@/store/modules/auth'
 import { useUserStore } from '@/store/modules/user'
@@ -70,17 +70,17 @@ const initDynamicRouter = async () => {
     // 1.请求用户信息，携带路由权限信息
     await userStore.GetInfoAction()
     // 判断当前用户有没有菜单权限
-    if (!authStore.authRouterList.length) {
-      ElNotification({
-        title: '无权限访问',
-        message: '当前账号无任何菜单权限，请联系系统管理员！',
-        type: 'warning',
-        duration: 3000,
-      })
-      userStore.resetUser()
-      router.replace(LOGIN_URL)
-      return Promise.reject('No permission')
-    }
+    // if (!authStore.authRouterList.length) {
+    //   ElNotification({
+    //     title: '无权限访问',
+    //     message: '当前账号无任何菜单权限，请联系系统管理员！',
+    //     type: 'warning',
+    //     duration: 3000,
+    //   })
+    //   userStore.resetUser()
+    //   router.replace(LOGIN_URL)
+    //   return Promise.reject('No permission')
+    // }
 
     // 2.过滤路由
     const routerList = filterAsyncRoutes(
@@ -101,7 +101,6 @@ const initDynamicRouter = async () => {
       ...staticRoutes,
       ...routerList,
     ] as unknown as Menu.MenuOptions[])
-    console.log('menuList', menuList)
     authStore.setAuthMenuList(menuList)
   } catch (error) {
     // 当按钮 || 菜单请求出错时，重定向到登陆页
