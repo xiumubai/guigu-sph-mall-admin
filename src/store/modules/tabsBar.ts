@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import router from '@/router/index'
 import { RouteRecordRaw } from 'vue-router'
 
-export const useTagsViewStore = defineStore({
+export const useTabsBarStore = defineStore({
   // id: 必须的，在所有 Store 中唯一
   id: 'tagsViewState',
   // state: 返回对象的函数
