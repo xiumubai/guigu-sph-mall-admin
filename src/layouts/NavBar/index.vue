@@ -3,7 +3,7 @@
  * @Autor: 李海波
  * @Date: 2023-03-03 13:41:05
  * @LastEditors: 李海波
- * @LastEditTime: 2023-03-03 13:47:44
+ * @LastEditTime: 2023-03-03 13:59:59
 -->
 <template>
   <div class="nav-bar-container">
@@ -13,12 +13,12 @@
           <el-icon class="fold-unfold" @click="handleCollapse">
             <component :is="collapse ? 'Expand' : 'Fold'"></component>
           </el-icon>
-          <Hamburger />
+          <Breadcrumb />
         </div>
       </el-col>
       <el-col :sm="12" :md="12" :lg="12" :xl="12">
         <div class="right-panel">
-          <Actions />
+          <Refresh />
           <ScreenFull />
           <User />
         </div>
@@ -30,19 +30,16 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
-import { Expand, Fold } from '@element-plus/icons-vue'
 import User from './components/User/index.vue'
-import Hamburger from './components/Hamburger/index.vue'
-import Actions from './components/Acions/index.vue'
+import Breadcrumb from './components/Breadcrumb/index.vue'
+import Refresh from './components/Refresh/index.vue'
 import ScreenFull from './components/ScreeFull/index.vue'
 export default defineComponent({
   components: {
-    Expand,
-    ScreenFull,
-    Actions,
-    Fold,
+    Refresh,
     User,
-    Hamburger,
+    ScreenFull,
+    Breadcrumb,
   },
   setup() {
     const settingsStore = useSettingsStore()

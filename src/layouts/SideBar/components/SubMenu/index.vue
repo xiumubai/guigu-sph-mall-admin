@@ -14,6 +14,18 @@
       <sub-menu :menuList="subItem.children" />
     </el-sub-menu>
     <el-menu-item
+      v-else-if="subItem.children && subItem.children.length == 1"
+      :index="subItem.children[0].path"
+      @click="handleClickMenu(subItem.children[0])"
+    >
+      <el-icon>
+        <component :is="subItem.children[0].meta.icon"></component>
+      </el-icon>
+      <template #title>
+        <span>{{ subItem.children[0].meta.title }}</span>
+      </template>
+    </el-menu-item>
+    <el-menu-item
       v-else
       :index="subItem.path"
       @click="handleClickMenu(subItem)"

@@ -1,7 +1,7 @@
 <template>
-  <el-breadcrumb class="app-breadcrumb" separator=">">
+  <el-breadcrumb class="app-breadcrumb" separator-icon="ArrowRight">
     <transition-group name="breadcrumb" mode="out-in">
-      <el-breadcrumb-item v-for="(item, index) in matched" :key="item.name">
+      <el-breadcrumb-item v-for="(item, index) in matched" :key="item.path">
         <el-icon size="14">
           <component :is="item.meta.icon"></component>
         </el-icon>
@@ -26,6 +26,7 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const router = useRouter()
+    console.log(route)
 
     const handleLink = (item: RouteRecordRaw) => {
       router.push({
@@ -36,9 +37,14 @@ export default defineComponent({
     const matched = computed(() =>
       route.matched.filter(
         (item) =>
-          item.meta && item.meta.title && item.meta.breadcrumb !== false,
+          item.meta &&
+          item.meta.title &&
+          item.meta.breadcrumb !== false &&
+          item.children.length !== 1,
       ),
     )
+    console.log(matched)
+
     return {
       handleLink,
       matched,
@@ -49,14 +55,18 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .app-breadcrumb {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 :deep(.el-breadcrumb__inner) {
   display: flex;
 
   > i {
-    margin-right: 2px;
+    margin-right: 3px;
+  }
+
+  > a {
+    color: #515a6e;
   }
 }
 </style>
