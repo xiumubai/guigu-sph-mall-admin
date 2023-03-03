@@ -33,6 +33,7 @@ export const staticRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/',
+    name: 'LAYOUT',
     component: LAYOUT,
     redirect: HOME_URL,
     meta: {
