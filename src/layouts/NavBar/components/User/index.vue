@@ -56,7 +56,6 @@ export default defineComponent({
         type: 'warning',
       }).then(async () => {
         await userStore.Logout()
-        localStorage.clear()
         router.push({ path: LOGIN_URL, query: { redirect: route.fullPath } })
         ElMessage.success('退出登录成功！')
       })

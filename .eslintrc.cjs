@@ -41,6 +41,7 @@ module.exports = {
     '@typescript-eslint/prefer-ts-expect-error': 'error', // 禁止使用 @ts-ignore
     '@typescript-eslint/no-explicit-any': 'off', // 禁止使用 any 类型
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-namespace': 'off', // 禁止使用自定义 TypeScript 模块和命名空间。
     '@typescript-eslint/semi': 'off',
 
     // eslint-plugin-vue (https://eslint.vuejs.org/rules/)
