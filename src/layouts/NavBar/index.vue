@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Autor: 李海波
+ * @Date: 2023-03-03 13:41:05
+ * @LastEditors: 李海波
+ * @LastEditTime: 2023-03-03 13:47:44
+-->
 <template>
   <div class="nav-bar-container">
     <el-row :gutter="15">
@@ -12,6 +19,7 @@
       <el-col :sm="12" :md="12" :lg="12" :xl="12">
         <div class="right-panel">
           <Actions />
+          <ScreenFull />
           <User />
         </div>
       </el-col>
@@ -26,9 +34,11 @@ import { Expand, Fold } from '@element-plus/icons-vue'
 import User from './components/User/index.vue'
 import Hamburger from './components/Hamburger/index.vue'
 import Actions from './components/Acions/index.vue'
+import ScreenFull from './components/ScreeFull/index.vue'
 export default defineComponent({
   components: {
     Expand,
+    ScreenFull,
     Actions,
     Fold,
     User,
