@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-03-03 15:58:03
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-03 16:29:26
+ * @LastEditTime: 2023-03-03 17:44:14
  * @Description: 用户权限相关的接口
  */
 
@@ -21,7 +21,7 @@ const USER_PRIFIX = '/admin/acl/user'
  */
 export function getAclUserList(
   pageParams: PageParams,
-  searchParams: SearchUserParams,
+  searchParams?: SearchUserParams,
 ) {
   return http.get<UserPageRes<AclUser.ResUserList>>(
     `${USER_PRIFIX}/${pageParams.page}/${pageParams.limit}`,
