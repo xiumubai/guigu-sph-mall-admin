@@ -1,19 +1,26 @@
+/*
+ * @Description: tabsBar 仓库
+ * @Autor: 李海波
+ * @Date: 2023-03-03 15:37:08
+ * @LastEditors: gjzxlihaibo@163.com
+ * @LastEditTime: 2023-03-03 17:35:38
+ */
 import { defineStore } from 'pinia'
 import router from '@/router/index'
 import { RouteRecordRaw } from 'vue-router'
 
 export const useTabsBarStore = defineStore({
   // id: 必须的，在所有 Store 中唯一
-  id: 'tagsViewState',
+  id: 'app-tabsBar',
   // state: 返回对象的函数
   state: (): {
     activeTabsValue: string
     visitedViews: RouteRecordRaw[]
     cachedViews: any[]
   } => ({
-    activeTabsValue: '/home',
+    activeTabsValue: '/index',
     visitedViews: [], // 选中过的路由表
-    cachedViews: [], //
+    cachedViews: [], // 使用 keepAlive 时的缓存
   }),
   getters: {},
   // 可以同步 也可以异步
@@ -34,6 +41,7 @@ export const useTabsBarStore = defineStore({
     },
     addVisitedView(view: RouteRecordRaw) {
       this.setTabsMenuValue(view.path)
+      // 当前存储的就是的话， 就不存储
       if (this.visitedViews.some((v) => v.path === view.path) || !view.meta)
         return
       this.visitedViews.push(

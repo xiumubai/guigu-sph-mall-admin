@@ -22,6 +22,7 @@ specifiers:
   lint-staged: ^13.1.0
   mockjs: ^1.1.0
   nprogress: ^0.2.0
+  path-browserify: ^1.0.1
   pinia: ^2.0.30
   pinia-plugin-persistedstate: ^3.1.0
   postcss: ^8.4.21
@@ -53,6 +54,7 @@ dependencies:
   axios: registry.npmmirror.com/axios/1.3.0
   element-plus: registry.npmmirror.com/element-plus/2.2.28_vue@3.2.45
   nprogress: registry.npmmirror.com/nprogress/0.2.0
+  path-browserify: 1.0.1
   pinia: registry.npmmirror.com/pinia/2.0.30_prq2uz4lho2pwp6irk4cfkrxwu
   pinia-plugin-persistedstate: registry.npmmirror.com/pinia-plugin-persistedstate/3.1.0_pinia@2.0.30
   vue: registry.npmmirror.com/vue/3.2.45
@@ -342,6 +344,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /path-browserify/1.0.1:
+    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
+    dev: false
 
   /vue-demi/0.13.11_vue@3.2.45:
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}

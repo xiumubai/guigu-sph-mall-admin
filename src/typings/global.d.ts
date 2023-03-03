@@ -1,7 +1,14 @@
+/*
+ * @Description:
+ * @Autor: codeBo
+ * @Date: 2023-03-03 15:37:08
+ * @LastEditors: gjzxlihaibo@163.com
+ * @LastEditTime: 2023-03-03 17:21:07
+ */
 declare type Nullable<T> = T | null
 declare type NonNullable<T> = T extends null | undefined ? never : T
 declare type Recordable<T = any> = Record<string, T>
-
+declare module 'path-browserify'
 // * Vite
 declare interface ViteEnv {
   VITE_API_URL: string
