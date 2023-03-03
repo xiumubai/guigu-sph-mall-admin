@@ -6,12 +6,12 @@
           <el-icon class="fold-unfold" @click="handleCollapse">
             <component :is="collapse ? 'Expand' : 'Fold'"></component>
           </el-icon>
-          <Hamburger />
+          <Breadcrumb />
         </div>
       </el-col>
       <el-col :sm="12" :md="12" :lg="12" :xl="12">
         <div class="right-panel">
-          <Actions />
+          <Refresh />
           <User />
         </div>
       </el-col>
@@ -22,17 +22,14 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
-import { Expand, Fold } from '@element-plus/icons-vue'
 import User from './components/User/index.vue'
-import Hamburger from './components/Hamburger/index.vue'
-import Actions from './components/Acions/index.vue'
+import Breadcrumb from './components/Breadcrumb/index.vue'
+import Refresh from './components/Refresh/index.vue'
 export default defineComponent({
   components: {
-    Expand,
-    Actions,
-    Fold,
+    Refresh,
     User,
-    Hamburger,
+    Breadcrumb,
   },
   setup() {
     const settingsStore = useSettingsStore()

@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb class="app-breadcrumb" separator=">">
+  <el-breadcrumb class="app-breadcrumb" separator-icon="ArrowRight">
     <transition-group name="breadcrumb" mode="out-in">
       <el-breadcrumb-item v-for="(item, index) in matched" :key="item.name">
         <el-icon size="14">
@@ -49,14 +49,18 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .app-breadcrumb {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 :deep(.el-breadcrumb__inner) {
   display: flex;
 
   > i {
-    margin-right: 2px;
+    margin-right: 3px;
+  }
+
+  > a {
+    color: #515a6e;
   }
 }
 </style>

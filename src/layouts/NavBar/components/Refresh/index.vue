@@ -1,8 +1,8 @@
 <template>
   <div class="btn">
     <el-tooltip effect="dark" content="刷新">
-      <el-icon :size="22" @click="onRefresh">
-        <refresh-left />
+      <el-icon :size="16" @click="onRefresh" color="rgba(0, 0, 0, 0.65)">
+        <Refresh />
       </el-icon>
     </el-tooltip>
   </div>
@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .btn {
-  margin-right: 10px;
+  margin-right: 20px;
   cursor: pointer;
 }
 </style>
