@@ -67,11 +67,14 @@ $base-tag-item-height: 34px;
 $base-menu-item-height: 50px;
 
 // 头部高度
-$base-header-height: #{$base-nav-bar-height} + #{$base-tabs-bar-height};
+$base-header-height: calc(#{$base-nav-bar-height} + #{$base-tabs-bar-height});
+
+// app-footer高度
+$base-app-footer-height: 55px;
 
 // app-main的高度
 $base-app-main-height: calc(
-  100vh - $base-nav-bar-height - $base-tabs-bar-height - 55px
+  100vh - $base-nav-bar-height - $base-tabs-bar-height - 56px - 90px
 );
 
 // 纵向布局时左侧导航未折叠时的宽度

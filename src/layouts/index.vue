@@ -10,10 +10,10 @@
           <LayoutNavBar />
           <LayoutTabsBar />
         </div>
-        <div class="app-main-container">
+        <el-scrollbar class="app-main-container">
           <LayoutMain />
           <LayoutFooter />
-        </div>
+        </el-scrollbar>
       </div>
     </div>
     <el-backtop />
@@ -88,7 +88,6 @@ export default defineComponent({
 
       .app-main-container {
         padding: 20px;
-        overflow: hidden;
       }
     }
   }

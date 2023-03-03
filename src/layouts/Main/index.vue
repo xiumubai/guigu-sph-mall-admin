@@ -1,12 +1,10 @@
 <template>
   <section class="app-mian-height">
-    <div class="index">
-      <router-view v-slot="{ Component, route }" v-if="isShow">
-        <transition appear name="fade-transform" mode="out-in">
-          <component :is="Component" :key="route.path" />
-        </transition>
-      </router-view>
-    </div>
+    <router-view v-slot="{ Component, route }" v-if="isShow">
+      <transition appear name="fade-transform" mode="out-in">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </router-view>
   </section>
 </template>
 

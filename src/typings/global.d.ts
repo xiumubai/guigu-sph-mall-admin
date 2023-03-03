@@ -29,6 +29,7 @@ declare interface ViteEnv {
  * @param meta.isFull ==> 是否全屏(示例：数据大屏页面)
  * @param meta.isAffix ==> 是否固定在 tabs nav
  * @param meta.isKeepAlive ==> 是否缓存
+ * @param meta.noAuth ===> 是否校验权限
  * */
 
 // * Menu

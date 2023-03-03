@@ -1,21 +1,13 @@
 <template>
-  <div>
-    <div>
-      <svg-icon name="home"></svg-icon>
-      首页
-    </div>
-
-    <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-container>
-        <el-header>Header</el-header>
-        <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
-      </el-container>
-    </el-container>
-  </div>
+  <div class="home">home</div>
 </template>
 
 <script setup lang="ts">
 // import SvgIcon from '@/components/SvgIcon/src/SvgIcon.vue'
 </script>
+
+<style scoped lang="scss">
+.home {
+  height: 1200px;
+}
+</style>
