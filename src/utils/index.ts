@@ -17,11 +17,10 @@ export function timeFix() {
 export function welcome() {
   const arr = [
     '加油努力工作',
-    '喝一杯咖啡会让你注意力更集中',
+    '喝一杯咖啡吧',
     '休息一会儿吧',
-    '准备吃什么呢?',
-    '要不要打一把 DOTA',
-    '我猜你可能累了',
+    '准备吃什么呢',
+    '要不要站起来活动一下',
   ]
   const index = Math.floor(Math.random() * arr.length)
   return arr[index]

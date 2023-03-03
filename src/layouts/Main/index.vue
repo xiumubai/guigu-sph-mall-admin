@@ -33,7 +33,8 @@ export default defineComponent({
 <style scoped lang="scss">
 .app-mian-height {
   min-height: $base-app-main-height;
-  padding: 20px;
-  background-color: #fff;
+
+  // padding: 20px;
+  background-color: inherit;
 }
 </style>
