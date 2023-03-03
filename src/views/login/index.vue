@@ -66,8 +66,8 @@ import type { FormInstance } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ElNotification } from 'element-plus'
 import { HOME_URL } from '@/config/config'
+import { timeFix } from '@/utils/index'
 import { login } from '@/api'
-
 const router = useRouter()
 const route = useRoute()
 const ruleFormRef = ref<FormInstance>()
@@ -112,8 +112,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
       userStore.setToken(data.token)
       router.replace((route.query.redirect as string) || HOME_URL)
       ElNotification({
-        title: '登陆成功',
-        message: 'hi！欢迎回来',
+        title: `hi,${timeFix()}!`,
+        message: `欢迎回来`,
         type: 'success',
       })
     } finally {
