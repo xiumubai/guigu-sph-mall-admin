@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 11:02:58
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-03 16:51:08
+ * @LastEditTime: 2023-03-04 10:04:46
  * @Description: 用户store
  */
 import { defineStore } from 'pinia'
@@ -10,7 +10,7 @@ import { getUserInfo, logout } from '@/api'
 import type { UserState } from './model/userModel'
 import type { UserInfo } from '@/api/user/types'
 import { useAuthStore } from './auth'
-import { RESEET } from '@/utils/reset'
+import { RESEETSTORE } from '@/utils/reset'
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
@@ -47,7 +47,7 @@ export const useUserStore = defineStore({
     async Logout() {
       try {
         await logout()
-        RESEET()
+        RESEETSTORE()
       } catch (error) {
         Promise.reject(error)
       }

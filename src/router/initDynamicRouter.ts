@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 15:32:50
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-03 15:28:09
+ * @LastEditTime: 2023-03-04 10:05:11
  * @Description:获取路由权限列表
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -14,6 +14,7 @@ import { useAuthStore } from '@/store/modules/auth'
 import { useUserStore } from '@/store/modules/user'
 import { dynamicRoutes } from './dynamicRoutes'
 import { notFoundRouter, staticRoutes } from './constantRoutes'
+import { RESEETSTORE } from '@/utils/reset'
 /**
  * @description 路由拦截
  */
@@ -36,6 +37,7 @@ router.beforeEach(async (to, from, next) => {
   }
   // 4.如果没有菜单列表，就重新请求菜单列表并添加动态路由
   const authStore = useAuthStore()
+
   authStore.setRouteName(to.name as string)
   if (!authStore.authRouterList.length) {
     await initDynamicRouter()
@@ -104,7 +106,7 @@ const initDynamicRouter = async () => {
     authStore.setAuthMenuList(menuList)
   } catch (error) {
     // 当按钮 || 菜单请求出错时，重定向到登陆页
-    userStore.resetUser()
+    RESEETSTORE()
     router.replace(LOGIN_URL)
     return Promise.reject(error)
   }

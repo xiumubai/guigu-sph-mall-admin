@@ -26,8 +26,6 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const router = useRouter()
-    console.log(route)
-
     const handleLink = (item: RouteRecordRaw) => {
       router.push({
         path: item.path,
@@ -43,7 +41,6 @@ export default defineComponent({
           item.children.length !== 1,
       ),
     )
-    console.log(matched)
 
     return {
       handleLink,
