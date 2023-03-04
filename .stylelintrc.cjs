@@ -40,7 +40,8 @@ module.exports = {
     'selector-class-pattern': null, // 关闭强制选择器类名的格式
     'property-no-unknown': null, // 禁止未知的属性(true 为不允许)
     'block-opening-brace-space-before': 'always', // 要求在块的开大括号之前必须有一个空格或不能有空白符
-    'value-no-vendor-prefix': null, // 关闭 vendor-prefix(为了解决多行省略 -webkit-box)
+    'value-no-vendor-prefix': null, // 关闭 属性值前缀 --webkit-box
+    'property-no-vendor-prefix': null, // 关闭 属性前缀 -webkit-mask
     'selector-pseudo-class-no-unknown': [
       // 不允许未知的选择器
       true,

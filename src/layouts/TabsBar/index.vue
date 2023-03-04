@@ -3,7 +3,7 @@
  * @Autor: 李海波
  * @Date: 2023-03-02 17:50:49
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-04 11:36:50
+ * @LastEditTime: 2023-03-04 11:45:38
 -->
 <template>
   <div class="tabs-bar-container">
@@ -204,17 +204,17 @@ export default defineComponent({
 
     .el-tabs__item.is-active {
       background-color: #e8f4ff;
+      -webkit-mask: url('@/assets/images/tabbar-bg.png');
       mask: url('@/assets/images/tabbar-bg.png');
-      mask: url('@/assets/images/tabbar-bg.png');
-      mask-size: 100% 100%;
+      -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
     }
 
     .el-tabs__item:not(.is_active):hover {
       background-color: #f6f8f9;
+      -webkit-mask: url('@/assets/images/tabbar-bg.png');
       mask: url('@/assets/images/tabbar-bg.png');
-      mask: url('@/assets/images/tabbar-bg.png');
-      mask-size: 100% 100%;
+      -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
     }
   }
