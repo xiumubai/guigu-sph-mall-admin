@@ -2,8 +2,8 @@
  * @Description: tabsBar 模块
  * @Autor: 李海波
  * @Date: 2023-03-02 17:50:49
- * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-04 11:45:38
+ * @LastEditors: gjzxlihaibo@163.com
+ * @LastEditTime: 2023-03-06 10:43:09
 -->
 <template>
   <div class="tabs-bar-container">
@@ -31,6 +31,29 @@
           </template>
         </el-tab-pane>
       </el-tabs>
+    </div>
+    <div class="btn-box">
+      <el-dropdown trigger="hover">
+        <el-icon color="rgba(0, 0, 0, 0.65)" :size="20">
+          <Menu />
+        </el-icon>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="closeCurrentTab">
+              <el-icon :size="14"><FolderRemove /></el-icon>
+              关闭当前
+            </el-dropdown-item>
+            <el-dropdown-item @click="closeOtherTab">
+              <el-icon :size="14"><Close /></el-icon>
+              关闭其他
+            </el-dropdown-item>
+            <el-dropdown-item @click="closeAllTab">
+              <el-icon :size="14"><FolderDelete /></el-icon>
+              关闭所有
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -146,17 +169,48 @@ export default defineComponent({
       }
       await tabsBarStore.delView(activeTabPath)
     }
+
+    // 按钮事件
+    const closeCurrentTab = () => {
+      tabsBarStore.toLastView(route.path)
+      tabsBarStore.delView(route.path)
+    }
+    const closeOtherTab = () => {
+      tabsBarStore.delOtherViews(route.path)
+    }
+    const closeAllTab = async () => {
+      tabsBarStore.delAllViews()
+      tabsBarStore.goHome()
+    }
     return {
       activeTabsValue,
       tabClick,
       removeTab,
       visitedViews,
+      closeCurrentTab,
+      closeOtherTab,
+      closeAllTab,
     }
   },
 })
 </script>
 
 <style scoped lang="scss">
+.btn-box {
+  padding-bottom: 5px;
+  cursor: pointer;
+
+  :deep(.el-icon) {
+    transition: all 0.3s;
+  }
+
+  :deep(.el-icon):hover {
+    color: $base-color-default;
+    transition: all 0.3s;
+    transform: rotate(90deg);
+  }
+}
+
 .tabs-bar-container {
   position: relative;
   box-sizing: border-box;

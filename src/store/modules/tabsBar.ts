@@ -3,7 +3,7 @@
  * @Autor: 李海波
  * @Date: 2023-03-03 15:37:08
  * @LastEditors: gjzxlihaibo@163.com
- * @LastEditTime: 2023-03-03 17:35:38
+ * @LastEditTime: 2023-03-06 10:37:14
  */
 import { defineStore } from 'pinia'
 import router from '@/router/index'
@@ -97,15 +97,10 @@ export const useTabsBarStore = defineStore({
       this.delAllViews()
     },
     delAllViews() {
-      return new Promise((resolve) => {
-        this.visitedViews = this.visitedViews.filter(
-          (v) => v.meta && v.meta.affix,
-        )
-        this.cachedViews = this.visitedViews.filter(
-          (v) => v.meta && v.meta.affix,
-        )
-        resolve([...this.visitedViews])
-      })
+      this.visitedViews = this.visitedViews.filter(
+        (v) => v.meta && v.meta.affix,
+      )
+      this.cachedViews = this.visitedViews.filter((v) => v.meta && v.meta.affix)
     },
     delOtherViews(path: string) {
       this.visitedViews = this.visitedViews.filter((item) => {
@@ -116,8 +111,8 @@ export const useTabsBarStore = defineStore({
       })
     },
     goHome() {
-      this.activeTabsValue = '/home'
-      router.push({ path: '/home' })
+      this.activeTabsValue = '/index'
+      router.push({ path: '/index' })
     },
     updateVisitedView(view: RouteRecordRaw) {
       for (let v of this.visitedViews) {
