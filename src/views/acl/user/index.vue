@@ -1,6 +1,8 @@
 <template>
   <div>
     <div>user</div>
+    <SearchForm />
+    <ProTable />
   </div>
 </template>
 
