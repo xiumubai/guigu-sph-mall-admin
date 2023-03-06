@@ -77,10 +77,8 @@ export default defineComponent({
     border-right: 0;
   }
 
-  ::v-deep {
-    .el-scrollbar__wrap {
-      overflow-x: hidden;
-    }
+  :deep(.el-scrollbar__wrap) {
+    overflow-x: hidden;
 
     .el-menu {
       border: 0;
