@@ -2,8 +2,8 @@
  * @Description: tabsBar 模块
  * @Autor: 李海波
  * @Date: 2023-03-02 17:50:49
- * @LastEditors: gjzxlihaibo@163.com
- * @LastEditTime: 2023-03-06 10:43:09
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-03-06 11:10:52
 -->
 <template>
   <div class="tabs-bar-container">
@@ -32,7 +32,7 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-    <div class="btn-box">
+    <div class="tabs-action">
       <el-dropdown trigger="hover">
         <el-icon color="rgba(0, 0, 0, 0.65)" :size="20">
           <Menu />
@@ -196,7 +196,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.btn-box {
+.tabs-action {
   padding-bottom: 5px;
   cursor: pointer;
 
