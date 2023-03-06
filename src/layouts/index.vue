@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Autor: codeBo
+ * @Date: 2023-03-03 15:37:08
+ * @LastEditors: gjzxlihaibo@163.com
+ * @LastEditTime: 2023-03-06 15:05:28
+-->
 <template>
   <div class="layout-admin-wrapper">
     <div class="layout-container-vertical fixed">
@@ -8,7 +15,7 @@
           :class="{ 'is-collapse': collapse }"
         >
           <LayoutNavBar />
-          <LayoutTabsBar />
+          <LayoutTabsBar v-if="showTag" />
         </div>
         <el-scrollbar class="app-main-container">
           <LayoutMain />
@@ -16,6 +23,7 @@
         </el-scrollbar>
       </div>
     </div>
+    <Theme />
     <el-backtop />
   </div>
 </template>
@@ -29,9 +37,11 @@ import LayoutMain from './Main/index.vue'
 import LayoutSideBar from './SideBar/index.vue'
 import LayoutNavBar from './NavBar/index.vue'
 import LayoutTabsBar from './TabsBar/index.vue'
+import Theme from '@/components/Theme/index.vue'
 
 export default defineComponent({
   components: {
+    Theme,
     LayoutFooter,
     LayoutMain,
     LayoutSideBar,
@@ -41,8 +51,10 @@ export default defineComponent({
   setup() {
     const settingsStore = useSettingsStore()
     const collapse = computed(() => settingsStore.collapse)
+    const showTag = computed(() => settingsStore.themeConfig.showTag)
     return {
       collapse,
+      showTag,
     }
   },
 })

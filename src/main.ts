@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Autor: codeBo
+ * @Date: 2023-03-02 14:02:23
+ * @LastEditors: gjzxlihaibo@163.com
+ * @LastEditTime: 2023-03-06 14:54:58
+ */
 import { createApp } from 'vue'
 import App from './App.vue'
 import '@/styles/index.scss'
@@ -8,7 +15,8 @@ import 'virtual:svg-icons-register'
 import pinia from '@/store'
 import registerGlobComp from '@/components'
 import router from '@/router'
-
+// 引入暗黑模式 element-plus 2.2 内置暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/router/initDynamicRouter'
 
 const app = createApp(App)
