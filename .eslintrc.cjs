@@ -45,12 +45,13 @@ module.exports = {
     '@typescript-eslint/semi': 'off',
 
     // eslint-plugin-vue (https://eslint.vuejs.org/rules/)
-    'vue/multi-word-component-names': [
-      // 要求组件名称始终为 “-” 链接的单词
-      'error',
-      {
-        ignores: ['index'],
-      },
-    ],
+    'vue/multi-word-component-names': 'off', // 要求组件名称始终为 “-” 链接的单词
+    // 'vue/multi-word-component-names': [
+    //   // 要求组件名称始终为 “-” 链接的单词
+    //   'error',
+    //   {
+    //     ignores: ['index'],
+    //   },
+    // ],
   },
 }

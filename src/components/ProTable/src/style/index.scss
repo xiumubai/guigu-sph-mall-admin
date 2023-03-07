@@ -1,0 +1,24 @@
+.card {
+  padding: 20px;
+  background-color: #fff;
+
+  .table-header {
+    .header-button-lf {
+      float: left;
+    }
+
+    .header-button-ri {
+      float: right;
+    }
+
+    .el-button {
+      margin-bottom: 15px;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+}
