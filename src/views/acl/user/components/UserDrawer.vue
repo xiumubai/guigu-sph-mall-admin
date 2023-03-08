@@ -56,8 +56,14 @@ interface DrawerProps {
 }
 
 const rules = reactive({
-  username: [{ required: true, message: '请填写用户姓名' }],
-  password: [{ required: true, message: '请填写用户密码' }],
+  username: [
+    { required: true, message: '请填写用户姓名' },
+    { min: 4, message: '用户名不能小于4位' },
+  ],
+  password: [
+    { required: true, message: '请填写用户密码' },
+    { min: 6, message: '密码不能小于6位' },
+  ],
 })
 
 // drawer框状态
