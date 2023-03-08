@@ -1,7 +1,28 @@
 <template>
+  <SearchForm
+    v-show="isShowSearch"
+    :columns="searchColumns"
+    :searchParam="searchParam"
+    :searchCol="searchCol"
+    :search="search"
+    :reset="reset"
+  />
   <div class="card table">
     <!-- 表格头部 操作按钮 -->
-
+    <div class="table-header">
+      <div class="header-left">
+        <slot name="tableHeader"></slot>
+      </div>
+      <div class="header-right" v-if="toolButton">
+        <el-button
+          :icon="Setting"
+          circle
+          v-if="columns.length"
+          @click="openColSetting"
+        ></el-button>
+        <!-- <el-button>筛选</el-button> -->
+      </div>
+    </div>
     <!-- 表格主体 -->
     <el-table
       v-bind="$attrs"
@@ -49,7 +70,7 @@
       <template #empty>
         <div class="table-empty">
           <slot name="empty">
-            <img src="@/assets/images/notData.png" alt="noData" />
+            <img src="./assets/images/notData.png" alt="noData" />
             <div>暂无数据</div>
           </slot>
         </div>
@@ -65,18 +86,20 @@
       />
     </slot>
   </div>
+  <ColSetting v-if="toolButton" ref="colRef" v-model:colSetting="colSetting" />
 </template>
 
 <script lang="ts" setup name="ProTable">
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
 import { useTable } from './hooks/useTable'
 import { useSelection } from './hooks/useSelection'
 import { ElTable, TableProps } from 'element-plus'
+import { Setting } from '@element-plus/icons-vue'
+import type { ColumnProps, BreakPoint } from './types'
+import SearchForm from '@/components/SearchForm'
 import TableColumn from './components/TableColumn.vue'
 import Pagination from './components/Pagination.vue'
-// import { Refresh, Printer, Operation, Search } from '@element-plus/icons-vue'
-import type { ColumnProps, BreakPoint } from './types'
-
+import ColSetting from './components/ColSetting.vue'
 /**
  * @description: props类型定义
  * @param columns       - 列配置项
@@ -113,11 +136,11 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   selectId: 'id',
   searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }),
 })
-// 是否显示搜索模块
-// const isShowSearch = ref(true)
+
+// --------------------表格-----------------------
 
 // 表格 DOM 元素
-// const tableRef = ref<InstanceType<typeof ElTable>>()
+const tableRef = ref<InstanceType<typeof ElTable>>()
 
 // 接收 columns 并设置为响应式
 const tableColumns = ref<ColumnProps[]>(props.columns)
@@ -129,7 +152,9 @@ const { getRowKeys } = useSelection(props.selectId)
 const {
   tableData,
   pageable,
-
+  searchParam,
+  search,
+  reset,
   handleSizeChange,
   handleCurrentChange,
 } = useTable(
@@ -138,6 +163,67 @@ const {
   props.pagination,
   props.dataCallback,
 )
+
+// --------------------搜索-----------------------
+// 是否显示搜索模块
+const isShowSearch = ref(true)
+
+// 定义 enumMap 存储 enum 值（避免异步请求无法格式化单元格内容 || 无法填充搜索下拉选择）
+const enumMap = ref(new Map<string, { [key: string]: any }[]>())
+provide('enumMap', enumMap)
+
+const setEnumMap = async (col: ColumnProps) => {
+  if (!col.enum) return
+  // 如果当前 enum 为后台数据需要请求数据，则调用该请求接口，并存储到 enumMap
+  if (typeof col.enum !== 'function')
+    return enumMap.value.set(col.prop!, col.enum!)
+  const { data } = await col.enum()
+  enumMap.value.set(col.prop!, data)
+}
+
+// 扁平化 columns
+const flatColumnsFunc = (
+  columns: ColumnProps[],
+  flatArr: ColumnProps[] = [],
+) => {
+  columns.forEach(async (col) => {
+    if (col._children?.length) flatArr.push(...flatColumnsFunc(col._children))
+    flatArr.push(col)
+
+    // 给每一项 column 添加 isShow && isFilterEnum 默认属性
+    col.isShow = col.isShow ?? true
+    col.isFilterEnum = col.isFilterEnum ?? true
+
+    setEnumMap(col)
+  })
+  return flatArr.filter((item) => !item._children?.length)
+}
+const flatColumns = ref<ColumnProps[]>()
+flatColumns.value = flatColumnsFunc(tableColumns.value)
+
+// 过滤需要搜索的配置项
+const searchColumns = flatColumns.value.filter((item) => item.search?.el)
+
+// 列设置 ==> 过滤掉不需要设置显隐的列
+const colRef = ref()
+const colSetting = tableColumns.value!.filter((item) => {
+  return (
+    item.type !== 'selection' &&
+    item.type !== 'index' &&
+    item.type !== 'expand' &&
+    item.prop !== 'operation'
+  )
+})
+const openColSetting = () => colRef.value.openColSetting()
+
+defineExpose({
+  element: tableRef,
+  tableData,
+  searchParam,
+  pageable,
+  reset,
+  enumMap,
+})
 </script>
 
 <style lang="scss" scoped>

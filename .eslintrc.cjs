@@ -14,6 +14,10 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     parser: '@typescript-eslint/parser',
+    jsxPragma: 'React',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   /* 继承已有的规则 */
   extends: [
@@ -46,12 +50,8 @@ module.exports = {
 
     // eslint-plugin-vue (https://eslint.vuejs.org/rules/)
     'vue/multi-word-component-names': 'off', // 要求组件名称始终为 “-” 链接的单词
-    // 'vue/multi-word-component-names': [
-    //   // 要求组件名称始终为 “-” 链接的单词
-    //   'error',
-    //   {
-    //     ignores: ['index'],
-    //   },
-    // ],
+    'vue/script-setup-uses-vars': 'error', // 防止<script setup>使用的变量<template>被标记为未使用
+    'vue/no-mutating-props': 'off', // 不允许组件 prop的改变
+    'vue/attribute-hyphenation': 'off', // 对模板中的自定义组件强制执行属性命名样式
   },
 }

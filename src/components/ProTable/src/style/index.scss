@@ -3,22 +3,20 @@
   background-color: #fff;
 
   .table-header {
-    .header-button-lf {
-      float: left;
-    }
-
-    .header-button-ri {
-      float: right;
-    }
-
-    .el-button {
-      margin-bottom: 15px;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   .pagination {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
+  }
+
+  .table-empty {
+    padding-top: 20px;
   }
 }

@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 11:02:58
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-06 16:07:34
+ * @LastEditTime: 2023-03-08 10:46:37
  * @Description: axios请求封装
  */
 import axios from 'axios'
@@ -101,7 +101,7 @@ const http = {
     params?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
-    return service.get(url, params, config)
+    return service.get(url, { params, ...config })
   },
 
   post<T>(

@@ -3,7 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { viteMockServe } from 'vite-plugin-mock'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig((config) => {
   const { command, mode } = config
   const env = loadEnv(mode, process.cwd(), '')
@@ -20,6 +21,10 @@ export default defineConfig((config) => {
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
       }),
+      // * vite 可以使用 jsx/tsx 语法
+      vueJsx(),
+      // * name 可以写在 script 标签上
+      VueSetupExtend(),
     ],
     resolve: {
       alias: {
