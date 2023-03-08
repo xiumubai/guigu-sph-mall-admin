@@ -32,7 +32,7 @@
             <div class="bullshit-oops">{{ state.oops }}</div>
             <div class="bullshit-headline">{{ state.headline }}</div>
             <div class="bullshit-info">{{ state.info }}</div>
-            <a class="bullshit-return-home">
+            <a class="bullshit-return-home" href="#/index">
               {{ state.jumpTime }}s&nbsp;{{ state.btn }}
             </a>
           </div>
@@ -86,8 +86,8 @@ function timeChange() {
     .pic-error {
       position: relative;
       float: left;
-      overflow: hidden;
       width: 120%;
+      overflow: hidden;
 
       &-parent {
         width: 100%;
@@ -212,9 +212,9 @@ function timeChange() {
     .bullshit {
       position: relative;
       float: left;
-      overflow: hidden;
-      padding: 30px 0;
       width: 300px;
+      padding: 30px 0;
+      overflow: hidden;
 
       &-oops {
         margin-bottom: 20px;
@@ -257,12 +257,12 @@ function timeChange() {
         width: 110px;
         height: 36px;
         font-size: 14px;
-        text-align: center;
+        line-height: 36px;
         color: #fff;
+        text-align: center;
+        cursor: pointer;
         background: $base-color-blue;
         border-radius: 100px;
-        line-height: 36px;
-        cursor: pointer;
         animation-name: slideUp;
         animation-duration: 0.5s;
         animation-delay: 0.3s;

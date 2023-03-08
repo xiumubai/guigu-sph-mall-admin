@@ -1,0 +1,22 @@
+.card {
+  padding: 20px;
+  background-color: #fff;
+
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .table-empty {
+    padding-top: 20px;
+  }
+}
