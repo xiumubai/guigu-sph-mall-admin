@@ -22,7 +22,7 @@
         <el-tooltip content="刷新表格">
           <el-button icon="Refresh" circle @click="getTableList"></el-button>
         </el-tooltip>
-        <el-tooltip content="设置">
+        <el-tooltip content="列设置">
           <el-button
             icon="Setting"
             circle

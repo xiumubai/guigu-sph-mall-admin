@@ -77,7 +77,7 @@ const columns: ColumnProps[] = [
   },
   { prop: 'nickName', label: '用户昵称' },
   { prop: 'roleName', label: '角色列表' },
-  { prop: 'gmtCreate', label: '创建时间' },
+  { prop: 'gmtCreate', label: '创建时间', sortable: true },
   { prop: 'gmtModified', label: '更新时间' },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]

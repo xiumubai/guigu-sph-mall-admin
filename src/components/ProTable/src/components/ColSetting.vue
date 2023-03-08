@@ -24,10 +24,7 @@
           label="排序"
           v-slot="scope"
         >
-          <el-switch
-            v-if="scope.row.sortable"
-            v-model="scope.row.sortable"
-          ></el-switch>
+          <el-switch v-model="scope.row.sortable"></el-switch>
         </el-table-column>
         <template #empty>
           <div class="table-empty">
