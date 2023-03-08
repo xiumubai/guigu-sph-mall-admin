@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 11:02:58
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-08 17:03:57
+ * @LastEditTime: 2023-03-08 22:51:51
  * @Description: axios请求封装
  */
 import axios from 'axios'
@@ -17,8 +17,8 @@ import { useUserStore } from '@/store/modules/user'
 import { ResultEnum } from '@/enums/httpEnums'
 import { ResultData } from './type'
 import { LOGIN_URL } from '@/config/config'
-import { useRouter } from 'vue-router'
 import { RESEETSTORE } from '../reset'
+import router from '@/router'
 
 const service: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -50,9 +50,8 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { data } = response
-    const router = useRouter()
     // * 登陆失效（code == 401）
-    if (data.code === ResultEnum.OVERDUE) {
+    if (data.code === ResultEnum.EXPIRE) {
       RESEETSTORE()
       router.replace(LOGIN_URL)
       return Promise.reject(data)

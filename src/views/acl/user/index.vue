@@ -45,8 +45,8 @@
         </el-button>
       </template>
     </ProTable>
+    <UserDrawer ref="drawerRef" />
   </div>
-  <UserDrawer ref="drawerRef" />
 </template>
 
 <script setup lang="ts">
