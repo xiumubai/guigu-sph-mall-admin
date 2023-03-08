@@ -1,2 +1,8 @@
 export { login, getUserInfo, logout } from './user'
-export { getAclUserList } from './acl'
+export {
+  getAclUserList,
+  addAclUser,
+  updateAclUser,
+  deleteAclUserById,
+  batchAclUser,
+} from './acl/account'

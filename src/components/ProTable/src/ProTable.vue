@@ -11,24 +11,36 @@
     <!-- 表格头部 操作按钮 -->
     <div class="table-header">
       <div class="header-left">
-        <slot name="tableHeader"></slot>
+        <slot
+          name="tableHeader"
+          :selectedListIds="selectedListIds"
+          :selectedList="selectedList"
+          :isSelected="isSelected"
+        ></slot>
       </div>
       <div class="header-right" v-if="toolButton">
-        <el-button
-          :icon="Setting"
-          circle
-          v-if="columns.length"
-          @click="openColSetting"
-        ></el-button>
-        <!-- <el-button>筛选</el-button> -->
+        <el-tooltip content="刷新表格">
+          <el-button icon="Refresh" circle @click="getTableList"></el-button>
+        </el-tooltip>
+        <el-tooltip content="设置">
+          <el-button
+            icon="Setting"
+            circle
+            v-if="columns.length"
+            @click="openColSetting"
+          ></el-button>
+        </el-tooltip>
       </div>
     </div>
     <!-- 表格主体 -->
     <el-table
+      ref="tableRef"
       v-bind="$attrs"
+      v-loading="loading"
       :data="tableData"
       :row-key="getRowKeys"
       :border="border"
+      @selection-change="selectionChange"
     >
       <!-- default slot -->
       <slot></slot>
@@ -90,11 +102,10 @@
 </template>
 
 <script lang="ts" setup name="ProTable">
-import { ref, provide } from 'vue'
+import { ref, provide, watch } from 'vue'
 import { useTable } from './hooks/useTable'
 import { useSelection } from './hooks/useSelection'
 import { ElTable, TableProps } from 'element-plus'
-import { Setting } from '@element-plus/icons-vue'
 import type { ColumnProps, BreakPoint } from './types'
 import SearchForm from '@/components/SearchForm'
 import TableColumn from './components/TableColumn.vue'
@@ -145,16 +156,15 @@ const tableRef = ref<InstanceType<typeof ElTable>>()
 // 接收 columns 并设置为响应式
 const tableColumns = ref<ColumnProps[]>(props.columns)
 
-// 表格多选 Hooks
-const { getRowKeys } = useSelection(props.selectId)
-
 // 表格操作 Hooks
 const {
   tableData,
   pageable,
   searchParam,
+  loading,
   search,
   reset,
+  getTableList,
   handleSizeChange,
   handleCurrentChange,
 } = useTable(
@@ -163,6 +173,23 @@ const {
   props.pagination,
   props.dataCallback,
 )
+
+// 监听页面 initParam 改化，重新获取表格数据
+watch(() => props.initParam, getTableList, { deep: true })
+
+//* --------------------表格多选-----------------------
+
+// 表格多选 Hooks
+const {
+  selectionChange,
+  getRowKeys,
+  selectedList,
+  selectedListIds,
+  isSelected,
+} = useSelection(props.selectId)
+
+// 清空选中数据列表
+const clearSelection = () => tableRef.value!.clearSelection()
 
 // --------------------搜索-----------------------
 // 是否显示搜索模块
@@ -174,7 +201,6 @@ provide('enumMap', enumMap)
 
 const setEnumMap = async (col: ColumnProps) => {
   if (!col.enum) return
-  // 如果当前 enum 为后台数据需要请求数据，则调用该请求接口，并存储到 enumMap
   if (typeof col.enum !== 'function')
     return enumMap.value.set(col.prop!, col.enum!)
   const { data } = await col.enum()
@@ -221,8 +247,13 @@ defineExpose({
   tableData,
   searchParam,
   pageable,
-  reset,
   enumMap,
+  isSelected,
+  selectedList,
+  selectedListIds,
+  reset,
+  getTableList,
+  clearSelection,
 })
 </script>
 

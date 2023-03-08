@@ -66,8 +66,6 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   searchParam: () => ({}),
 })
 
-console.log(props.searchParam, 'props')
-
 // 获取响应式设置
 const getResponsive = (item: ColumnProps) => {
   return {
