@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-03 11:18:10
+ * @LastEditTime: 2023-03-08 22:37:31
  * @Description: 静态路由
  */
 
@@ -52,6 +52,14 @@ export const staticRoutes: RouteRecordRaw[] = [
         },
       },
     ],
+  },
+  // 此路由防止控制台出现No match found for location with path的警告
+  {
+    path: '/:catchAll(.*)',
+    meta: {
+      isHide: true,
+    },
+    component: () => import('@/views/error/error-404.vue'), //这个是我自己的路径
   },
 ]
 
