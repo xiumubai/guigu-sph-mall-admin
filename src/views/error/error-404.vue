@@ -46,7 +46,7 @@
 import { reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
-let state = reactive({
+let state: any = reactive({
   jumpTime: 5,
   oops: '抱歉!',
   headline: '当前页面不存在...',

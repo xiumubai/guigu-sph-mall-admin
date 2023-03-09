@@ -33,7 +33,7 @@ function createUserList() {
 export default [
   // 用户登录
   {
-    url: '/dev-api/user/login',
+    url: '/dev-api/mock/admin/acl/index/login',
     method: 'post',
     response: ({ body }) => {
       const { username, password } = body
@@ -51,7 +51,7 @@ export default [
   },
   // 获取用户信息
   {
-    url: '/dev-api/user/info',
+    url: '/mock/user/info',
     method: 'get',
     response: (request) => {
       const token = getRequestToken(request)

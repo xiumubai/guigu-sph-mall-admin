@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: codeBo
  * @Date: 2023-03-03 15:37:08
- * @LastEditors: gjzxlihaibo@163.com
- * @LastEditTime: 2023-03-03 17:21:07
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-03-09 10:01:43
  */
 declare type Nullable<T> = T | null
 declare type NonNullable<T> = T extends null | undefined ? never : T
@@ -11,14 +11,10 @@ declare type Recordable<T = any> = Record<string, T>
 declare module 'path-browserify'
 // * Vite
 declare interface ViteEnv {
-  VITE_API_URL: string
-  VITE_PORT: number
-  VITE_OPEN: boolean
-  VITE_GLOB_APP_TITLE: string
-  VITE_DROP_CONSOLE: boolean
-  VITE_PROXY_URL: string
-  VITE_BUILD_GZIP: boolean
-  VITE_REPORT: boolean
+  NODE_ENV: string
+  VITE_APP_PORT: number
+  VITE_APP_TITLE: string
+  VITE_APP_BASE_API: string
 }
 
 /**
