@@ -8,6 +8,16 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
+
+    :deep(.el-icon) {
+      margin-left: 12px;
+      cursor: pointer;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
   }
 
   .pagination {

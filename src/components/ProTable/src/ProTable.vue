@@ -7,7 +7,7 @@
     :search="search"
     :reset="reset"
   />
-  <div class="card table">
+  <div class="card table" ref="tableCard">
     <!-- 表格头部 操作按钮 -->
     <div class="table-header">
       <div class="header-left">
@@ -20,15 +20,27 @@
       </div>
       <div class="header-right" v-if="toolButton">
         <el-tooltip content="刷新表格">
-          <el-button icon="Refresh" circle @click="getTableList"></el-button>
+          <el-icon size="18" @click="getTableList">
+            <Refresh />
+          </el-icon>
+        </el-tooltip>
+        <el-tooltip
+          effect="dark"
+          :content="!isFullscreen ? '全屏' : '收起'"
+          placement="bottom"
+        >
+          <SvgIcon
+            size="18"
+            name="full-screen"
+            v-if="!isFullscreen"
+            @click="toggle"
+          />
+          <SvgIcon size="18" name="exit-full" v-else @click="toggle" />
         </el-tooltip>
         <el-tooltip content="列设置">
-          <el-button
-            icon="Setting"
-            circle
-            v-if="columns.length"
-            @click="openColSetting"
-          ></el-button>
+          <el-icon size="18" v-if="columns.length" @click="openColSetting">
+            <Setting />
+          </el-icon>
         </el-tooltip>
       </div>
     </div>
@@ -103,6 +115,7 @@
 
 <script lang="ts" setup name="ProTable">
 import { ref, provide, watch } from 'vue'
+import { useFullscreen } from '@vueuse/core'
 import { useTable } from './hooks/useTable'
 import { useSelection } from './hooks/useSelection'
 import { ElTable, TableProps } from 'element-plus'
@@ -149,9 +162,13 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 })
 
 // --------------------表格-----------------------
+const tableCard = ref()
 
 // 表格 DOM 元素
 const tableRef = ref<InstanceType<typeof ElTable>>()
+
+// 表格全屏
+const { isFullscreen, toggle } = useFullscreen(tableCard)
 
 // 接收 columns 并设置为响应式
 const tableColumns = ref<ColumnProps[]>(props.columns)
