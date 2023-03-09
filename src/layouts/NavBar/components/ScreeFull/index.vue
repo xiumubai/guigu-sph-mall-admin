@@ -2,8 +2,8 @@
  * @Description: 
  * @Autor: 李海波
  * @Date: 2023-03-03 13:39:38
- * @LastEditors: 李海波
- * @LastEditTime: 2023-03-03 14:00:33
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-03-09 16:16:38
 -->
 <template>
   <div class="m-screenful">
@@ -12,9 +12,13 @@
       :content="!isFullscreen ? '全屏' : '收起'"
       placement="bottom"
     >
-      <el-icon :size="16" @click="toggle">
-        <full-screen />
-      </el-icon>
+      <SvgIcon
+        size="16"
+        name="full-screen"
+        v-if="!isFullscreen"
+        @click="toggle"
+      />
+      <SvgIcon size="16" name="exit-full" v-else @click="toggle" />
     </el-tooltip>
   </div>
 </template>

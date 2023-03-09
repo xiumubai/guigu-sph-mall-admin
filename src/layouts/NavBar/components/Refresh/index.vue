@@ -2,13 +2,13 @@
  * @Description: 
  * @Autor: 李海波
  * @Date: 2023-03-03 13:41:05
- * @LastEditors: 李海波
- * @LastEditTime: 2023-03-03 14:00:58
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-03-09 15:35:58
 -->
 <template>
   <div class="btn">
     <el-tooltip effect="dark" content="刷新">
-      <el-icon :size="16" @click="onRefresh" color="rgba(0, 0, 0, 0.65)">
+      <el-icon :size="16" @click="onRefresh">
         <Refresh />
       </el-icon>
     </el-tooltip>
