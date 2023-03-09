@@ -1,8 +1,13 @@
 /*
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
+<<<<<<< Updated upstream
  * @LastEditors: 1547702880@@qq.com
  * @LastEditTime: 2023-03-08 22:37:31
+=======
+ * @LastEditors: gjzxlihaibo@163.com
+ * @LastEditTime: 2023-03-06 16:34:48
+>>>>>>> Stashed changes
  * @Description: 静态路由
  */
 
@@ -53,13 +58,30 @@ export const staticRoutes: RouteRecordRaw[] = [
       },
     ],
   },
-  // 此路由防止控制台出现No match found for location with path的警告
   {
-    path: '/:catchAll(.*)',
+    path: '/echarts',
+    component: LAYOUT,
+    redirect: '/echarts/barEcharts',
+    name: 'echarts',
     meta: {
-      isHide: true,
+      title: 'Echarts',
+      icon: 'trend-charts',
+      roles: ['other'],
     },
-    component: () => import('@/views/error/error-404.vue'), //这个是我自己的路径
+    children: [
+      {
+        path: '/barEcharts',
+        component: () => import('@/views/echarts/barEcharts/index.vue'),
+        name: 'bar',
+        meta: { title: '柱状图', roles: ['other'], icon: 'Menu' },
+      },
+      {
+        path: '/mapEcharts',
+        component: () => import('@/views/echarts/mapEcharts/index.vue'),
+        name: 'graph',
+        meta: { title: '地图', roles: ['other'], icon: 'Menu' },
+      },
+    ],
   },
 ]
 

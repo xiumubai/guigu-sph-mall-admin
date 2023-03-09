@@ -3,10 +3,11 @@ import type { App, Component } from 'vue'
 import { SvgIcon } from './SvgIcon'
 import { SearchForm } from './SearchForm'
 import { ProTable } from './ProTable'
+import { SwitchDark } from './SwitchDark'
 
 const Components: {
   [propName: string]: Component
-} = { SvgIcon, SearchForm, ProTable }
+} = { SvgIcon, SearchForm, ProTable, SwitchDark }
 
 export default {
   install: (app: App) => {

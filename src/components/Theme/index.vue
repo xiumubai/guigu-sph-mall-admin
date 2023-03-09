@@ -36,7 +36,6 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useSettingsStore } from '@/store/modules/settings'
 import { DEFAULT_PRIMARY } from '@/config/config'
-import SwitchDark from '@/components/SwitchDark/index.vue'
 
 const SettingStore = useSettingsStore()
 const primary = ref(SettingStore.themeConfig.primary as string)

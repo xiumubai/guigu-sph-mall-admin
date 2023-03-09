@@ -3,7 +3,7 @@
  * @Autor: codeBo
  * @Date: 2023-03-06 14:46:26
  * @LastEditors: gjzxlihaibo@163.com
- * @LastEditTime: 2023-03-06 15:28:43
+ * @LastEditTime: 2023-03-07 14:55:25
 -->
 <template>
   <el-switch
@@ -15,7 +15,7 @@
   />
 </template>
 
-<script setup lang="ts" name="switchDark">
+<script setup lang="ts" name="SwitchDark">
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
