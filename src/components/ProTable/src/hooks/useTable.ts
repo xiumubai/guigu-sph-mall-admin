@@ -32,6 +32,8 @@ export const useTable = (
     searchInitParam: {},
     // 总参数(包含分页和查询参数)
     totalParam: {},
+    // laoding
+    loading: false,
   })
 
   /**
@@ -60,6 +62,7 @@ export const useTable = (
    * */
   const getTableList = async () => {
     try {
+      state.loading = true
       // 先把初始化参数和分页参数放到总参数里面
       Object.assign(
         state.totalParam,
@@ -67,7 +70,7 @@ export const useTable = (
         isPageable ? pageParam.value : {},
       )
       let { data } = await api(state.totalParam)
-
+      state.loading = false
       dataCallBack && (data = dataCallBack(data))
       // TODO: 这里接口数据返回的有不一致的情况，有的可能是list，有的可能是items，需要手动改一下，类型声明也需要更改
       state.tableData = isPageable ? data.items : data
@@ -79,6 +82,7 @@ export const useTable = (
       // 如果有分页更新分页信息
       isPageable && updatePageable({ pageNum: page, pageSize: limit, total })
     } catch (error) {
+      state.loading = false
       console.log(error)
     }
   }

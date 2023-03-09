@@ -6,6 +6,11 @@ export namespace AclUser {
     username?: string
     nickName?: string
   }
+  export interface ReqAclAddUser {
+    username: string
+    nickName?: string
+    password: string
+  }
   export interface ResAclUserList {
     deleted: boolean
     gmtCreate: string

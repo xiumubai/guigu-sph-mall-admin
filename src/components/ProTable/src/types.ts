@@ -9,6 +9,7 @@ export namespace Table {
   export interface TableStateProps {
     tableData: any[]
     pageable: Pageable
+    loading: boolean
     searchParam: {
       [key: string]: any
     }

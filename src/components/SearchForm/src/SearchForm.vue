@@ -45,8 +45,8 @@
 <script setup lang="ts" name="SearchForm">
 import { ref, computed } from 'vue'
 import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue'
-import { ColumnProps } from '@/components/ProTable/src/types'
-import { BreakPoint } from '@/components/Grid/src/types'
+import type { ColumnProps } from '@/components/ProTable/src/types'
+import type { BreakPoint } from '@/components/Grid/src/types'
 
 import Grid from '@/components/Grid/src/Grid.vue'
 import GridItem from '@/components/Grid/src/components/GridItem.vue'
@@ -65,8 +65,6 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   columns: () => [],
   searchParam: () => ({}),
 })
-
-console.log(props.searchParam, 'props')
 
 // 获取响应式设置
 const getResponsive = (item: ColumnProps) => {
