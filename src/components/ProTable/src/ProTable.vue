@@ -25,6 +25,7 @@
           </el-icon>
         </el-tooltip>
         <el-tooltip
+          v-if="false"
           effect="dark"
           :content="!isFullscreen ? '全屏' : '收起'"
           placement="bottom"
@@ -81,7 +82,11 @@
         </el-table-column>
         <!-- other columns -->
         <TableColumn :column="item" v-if="!item.type && item.prop">
-          <template v-for="slot in Object.keys($slots)" #[slot]="scope">
+          <template
+            v-for="slot in Object.keys($slots)"
+            :key="slot"
+            #[slot]="scope"
+          >
             <slot :name="slot" :row="scope.row"></slot>
           </template>
         </TableColumn>
