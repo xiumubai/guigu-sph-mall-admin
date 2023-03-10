@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 11:02:58
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-09 11:09:41
+ * @LastEditTime: 2023-03-10 15:37:27
  * @Description: axios请求封装
  */
 import axios from 'axios'
@@ -50,9 +50,10 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { data } = response
-    // * 登陆失效（code == 401）
+    // * 登陆失效（code == 203）
     if (data.code === ResultEnum.EXPIRE) {
       RESEETSTORE()
+      ElMessage.error(data.message || ResultEnum.ERRMESSAGE)
       router.replace(LOGIN_URL)
       return Promise.reject(data)
     }

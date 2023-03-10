@@ -2,17 +2,17 @@
  * @Author: 朽木白
  * @Date: 2023-02-27 09:50:34
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-09 11:21:21
+ * @LastEditTime: 2023-03-10 14:16:24
  * @Description: 系统用户登陆信息接口
  */
 import http from '@/utils/http'
-import type { LoginData, LoginRes, UserRes } from './types'
+import type { LoginData, UserRes } from './types'
 
 /**
  * 登录
  */
 export function login(data: LoginData) {
-  return http.post<LoginRes>('/admin/acl/index/login', data)
+  return http.post<string>('/admin/acl/index/login', data)
 }
 
 /**

@@ -109,7 +109,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     try {
       loading.value = true
       const { data } = await login(ruleForm)
-      userStore.setToken(data.token)
+      userStore.setToken(data)
       router.replace((route.query.redirect as string) || HOME_URL)
       ElNotification({
         title: `hi,${timeFix()}!`,
