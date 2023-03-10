@@ -6,7 +6,6 @@
       :requestApi="getAclUserList"
       :initParam="initParam"
     >
-      <!-- Expand -->
       <template #tableHeader="scope">
         <el-button type="primary" icon="Plus" @click="openDrawer('新增')">
           添加
@@ -20,9 +19,6 @@
         >
           批量删除
         </el-button>
-      </template>
-      <template #expand="scope">
-        {{ scope.row }}
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
@@ -79,6 +75,7 @@ const proTable = ref()
 const columns: ColumnProps[] = [
   { type: 'selection', fixed: 'left', width: 80 },
   { type: 'index', label: '#', width: 80 },
+  { prop: 'id', label: 'id' },
   {
     prop: 'username',
     label: '用户名',

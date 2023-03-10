@@ -5,4 +5,8 @@ export {
   updateAclUser,
   deleteAclUserById,
   batchAclUser,
+  getUserRolesList,
+  assignUserRoles,
 } from './acl/account'
+
+export { getRoleList, deleteRole, addRole, updateRole } from './acl/role'
