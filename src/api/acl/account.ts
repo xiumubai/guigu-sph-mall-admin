@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-03-03 15:58:03
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-08 16:47:32
+ * @LastEditTime: 2023-03-10 16:01:47
  * @Description: 系统账户接口
  */
 
@@ -60,4 +60,25 @@ export function deleteAclUserById(id: string) {
  */
 export function batchAclUser(ids: string[]) {
   return http.delete<PageRes<any>>(`/admin/acl/user/batchRemove`, ids)
+}
+
+/**
+ * @description:   获取某个用户的所有角色
+ * @param {string} userId
+ * @returns {<PageRes<any>>}
+ */
+export function getUserRolesList(userId: string) {
+  return http.get<PageRes<AclUser.ResUserRolesList>>(
+    `/admin/acl/user/toAssign/${userId}`,
+  )
+}
+
+/**
+ * @description:   给某个用户分配角色
+ * @param {AclUser.ReqAssignRoles} params
+ * @returns {<PageRes<any>>}
+ */
+export function assignUserRoles(params: AclUser.ReqAssignRoles) {
+  // Post方法传递get参数的方式需要下面这么写
+  return http.post<PageRes<any>>(`/admin/acl/user/doAssignRole`, params)
 }
