@@ -54,3 +54,17 @@ export namespace Role {
     roleName: string
   }
 }
+
+export namespace Permission {
+  export interface ReqAssignPermision {
+    roleId: string
+    permissionId: string
+  }
+  export interface ResPermisionList {
+    id: number | string
+    level: number
+    name: string
+    select: boolean
+    children?: ResPermisionList[]
+  }
+}

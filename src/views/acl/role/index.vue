@@ -13,7 +13,7 @@
           type="primary"
           link
           icon="UserFilled"
-          @click="openDrawer('分配角色', scope.row)"
+          @click="openDrawer('分配权限', scope.row)"
         >
           分配权限
         </el-button>
@@ -36,6 +36,7 @@
       </template>
     </ProTable>
     <RoleDialog ref="DialogRef" />
+    <DoleDrawer ref="DrawerRef" />
   </div>
 </template>
 
@@ -43,9 +44,17 @@
 import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import RoleDialog from './components/RoleDialog.vue'
+import DoleDrawer from './components/RoleDrawer.vue'
 import type { Role } from '@/api/acl/types'
 import { useHandleData } from '@/hooks/useHandleData'
-import { getRoleList, deleteRole, addRole, updateRole } from '@/api'
+import {
+  getRoleList,
+  deleteRole,
+  addRole,
+  updateRole,
+  getRolePermission,
+  assignRolePermission,
+} from '@/api'
 
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
@@ -62,8 +71,8 @@ const columns: ColumnProps[] = [
 
 const proTable = ref()
 
-const DialogRef = ref()
 // 打开Dialog
+const DialogRef = ref()
 const openDialog = (title: string, rowData: Partial<Role.ResRoleList> = {}) => {
   const params = {
     title: title,
@@ -75,8 +84,19 @@ const openDialog = (title: string, rowData: Partial<Role.ResRoleList> = {}) => {
 }
 
 // 打开Drawer
-const openDrawer = (title: string, rowData: Partial<Role.ResRoleList> = {}) => {
-  console.log(title, rowData)
+const DrawerRef = ref()
+const openDrawer = async (
+  title: string,
+  rowData: Partial<Role.ResRoleList> = {},
+) => {
+  const params = {
+    title: title,
+    rowData,
+    list: await getRolePermission(rowData!.id || ''),
+    api: assignRolePermission,
+    getTableList: proTable.value.getTableList,
+  }
+  DrawerRef.value.acceptParams(params)
 }
 
 // *根据id删除角色
