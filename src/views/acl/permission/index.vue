@@ -12,6 +12,7 @@
         <el-button
           type="primary"
           link
+          v-if="BUTTONS['btn.Permission.add']"
           icon="UserFilled"
           :disabled="scope.row.level === 4"
           @click="openDialog(1, scope.row)"
@@ -21,6 +22,7 @@
         <el-button
           type="primary"
           link
+          v-if="BUTTONS['btn.Permission.update']"
           icon="Edit"
           :disabled="scope.row.level === 1"
           @click="openDialog(2, scope.row)"
@@ -31,6 +33,7 @@
           type="primary"
           link
           icon="Delete"
+          v-if="BUTTONS['btn.Permission.remove']"
           :disabled="scope.row.level === 1"
           @click="handleDelete(scope.row)"
         >
@@ -53,6 +56,9 @@ import {
 } from '@/api'
 import type { Permission } from '@/api/acl/types'
 import PermissonDialog from './components/PermissionDialog.vue'
+import { useAuthButtons } from '@/hooks/useAuthButtons'
+
+const { BUTTONS } = useAuthButtons()
 
 const columns = [
   { prop: 'name', label: '名称', align: 'left' },

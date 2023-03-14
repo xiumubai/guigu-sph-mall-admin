@@ -20,6 +20,7 @@
           type="danger"
           icon="Delete"
           plain
+          v-auth="['btn.User.remove']"
           @click="batchDelete(scope.selectedListIds)"
           :disabled="!scope.isSelected"
         >
@@ -32,6 +33,7 @@
           type="primary"
           link
           icon="UserFilled"
+          v-auth="['btn.User.assgin']"
           @click="openDrawer('分配角色', scope.row)"
         >
           分配角色
@@ -40,6 +42,7 @@
           type="primary"
           link
           icon="Edit"
+          v-auth="['btn.User.update']"
           @click="openDrawer('编辑', scope.row)"
         >
           编辑
@@ -48,7 +51,7 @@
           type="primary"
           link
           icon="Delete"
-          v-auth="'btn.User.delete'"
+          v-auth="'btn.User.remove'"
           @click="deleteUser(scope.row)"
         >
           删除
