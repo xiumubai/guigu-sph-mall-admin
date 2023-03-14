@@ -9,6 +9,7 @@ import 'virtual:svg-icons-register'
 import pinia from './store/index'
 import registerGlobComp from './components'
 import router from './router'
+import directives from '@/directives/index'
 
 import '@/router/initDynamicRouter'
 
@@ -28,5 +29,7 @@ app.use(registerGlobComp)
 app.use(pinia)
 
 app.use(router)
+
+app.use(directives)
 
 app.mount('#app')

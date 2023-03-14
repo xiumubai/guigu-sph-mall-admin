@@ -8,7 +8,12 @@
       :initParam="initParam"
     >
       <template #tableHeader="scope">
-        <el-button type="primary" icon="Plus" @click="openDrawer('新增')">
+        <el-button
+          type="primary"
+          icon="Plus"
+          v-auth="['btn.User.add']"
+          @click="openDrawer('新增')"
+        >
           添加
         </el-button>
         <el-button
@@ -43,6 +48,7 @@
           type="primary"
           link
           icon="Delete"
+          v-auth="'btn.User.delete'"
           @click="deleteUser(scope.row)"
         >
           删除
