@@ -22,7 +22,9 @@
     </el-form>
     <template #footer>
       <el-button @click="dialogVisible = false">取消</el-button>
-      <el-button type="primary" @click="handleSubmit">确定</el-button>
+      <el-button type="primary" @click="handleSubmit" :loading="loading">
+        确定
+      </el-button>
     </template>
   </el-dialog>
 </template>
@@ -45,12 +47,14 @@ const rules = reactive({
 })
 
 const dialogVisible = ref(false)
-
+const loading = ref<boolean>(false)
 // props定义
 // title 需要给个默认值，否则ts会提示为空值
 const dialogProps = ref<DialogProps>({ title: '' })
 // 接收父组件参数
 const acceptParams = (params: DialogProps): void => {
+  console.log(params.rowData)
+
   dialogProps.value = params
   dialogVisible.value = true
 }
@@ -59,11 +63,14 @@ const handleSubmit = () => {
   ruleFormRef.value!.validate(async (valid) => {
     if (!valid) return
     try {
+      loading.value = true
       await dialogProps.value.api!(dialogProps.value.rowData)
       ElMessage.success({ message: `${dialogProps.value.title}用户成功！` })
       dialogProps.value.getTableList!()
       dialogVisible.value = false
+      loading.value = false
     } catch (error) {
+      loading.value = false
       console.log(error)
     }
   })

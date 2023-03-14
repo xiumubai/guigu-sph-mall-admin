@@ -1,6 +1,11 @@
 <template>
   <div>
-    <ProTable ref="proTable" :columns="columns" :requestApi="getRoleList">
+    <ProTable
+      ref="proTable"
+      :columns="columns"
+      :requestApi="getRoleList"
+      :dataCallback="dataCallback"
+    >
       <!-- Expand -->
       <template #tableHeader>
         <el-button type="primary" icon="Plus" @click="openDialog('新增')">
@@ -71,12 +76,20 @@ const columns: ColumnProps[] = [
 
 const proTable = ref()
 
+// 处理返回的数据格式
+const dataCallback = (data: any) => {
+  return {
+    list: data?.records,
+    total: data?.total,
+  }
+}
+
 // 打开Dialog
 const DialogRef = ref()
 const openDialog = (title: string, rowData: Partial<Role.ResRoleList> = {}) => {
   const params = {
     title: title,
-    rowData,
+    rowData: { ...rowData },
     api: title === '新增' ? addRole : updateRole,
     getTableList: proTable.value.getTableList,
   }

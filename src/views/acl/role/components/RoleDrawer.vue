@@ -30,7 +30,9 @@
     </el-form>
     <template #footer>
       <el-button @click="drawerVisible = false">取消</el-button>
-      <el-button type="primary" @click="handleSubmit">确定</el-button>
+      <el-button type="primary" @click="handleSubmit" :loading="loading">
+        确定
+      </el-button>
     </template>
   </el-drawer>
 </template>
@@ -59,7 +61,7 @@ const defaultProps = {
 }
 const allPermission = ref<Permission.ResPermisionList[]>([])
 const checkedKeys = ref<string[]>([])
-
+const loading = ref<boolean>(false)
 const treeRef = ref<InstanceType<typeof ElTree>>()
 
 // 接收父组件传过来的参数
@@ -90,16 +92,18 @@ const handleSubmit = async () => {
   try {
     // 获取selectdKeys
     const checkedKeys = treeRef.value?.getCheckedKeys() || []
-    console.log(checkedKeys)
     const params = {
       roleId: drawerProps.value.rowData.id,
       permissionId: checkedKeys?.join(','),
     }
+    loading.value = true
     await drawerProps.value.api!(params)
     ElMessage.success({ message: `${drawerProps.value.title}成功！` })
     drawerProps.value.getTableList!()
     drawerVisible.value = false
+    loading.value = false
   } catch (error) {
+    loading.value = true
     console.log(error)
   }
 }

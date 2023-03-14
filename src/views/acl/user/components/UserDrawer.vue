@@ -22,11 +22,11 @@
       </el-form-item>
       <el-form-item
         label="用户昵称"
-        prop="nickName"
+        prop="name"
         v-if="drawerProps.title !== '分配角色'"
       >
         <el-input
-          v-model="drawerProps.rowData!.nickName"
+          v-model="drawerProps.rowData!.name"
           placeholder="请填写用户昵称"
           clearable
         ></el-input>
@@ -70,7 +70,9 @@
     </el-form>
     <template #footer>
       <el-button @click="drawerVisible = false">取消</el-button>
-      <el-button type="primary" @click="handleSubmit">确定</el-button>
+      <el-button type="primary" @click="handleSubmit" :loading="loading">
+        确定
+      </el-button>
     </template>
   </el-drawer>
 </template>
@@ -110,6 +112,8 @@ const drawerVisible = ref(false)
 const drawerProps = ref<DrawerProps>({
   title: '',
 })
+
+const loading = ref<boolean>(false)
 
 // 角色选择状态管理
 const state: RolesState = reactive({
@@ -154,6 +158,7 @@ const handleSubmit = () => {
   ruleFormRef.value!.validate(async (valid) => {
     if (!valid) return
     try {
+      loading.value = true
       if (drawerProps.value.title === '分配角色') {
         const params = {
           userId: drawerProps.value.rowData.id,
@@ -166,7 +171,10 @@ const handleSubmit = () => {
       ElMessage.success({ message: `${drawerProps.value.title}用户成功！` })
       drawerProps.value.getTableList!()
       drawerVisible.value = false
+      loading.value = false
     } catch (error) {
+      loading.value = false
+
       console.log(error)
     }
   })

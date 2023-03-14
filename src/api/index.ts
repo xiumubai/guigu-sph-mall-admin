@@ -11,4 +11,11 @@ export {
 
 export { getRoleList, deleteRole, addRole, updateRole } from './acl/role'
 
-export { getRolePermission, assignRolePermission } from './acl/permission'
+export {
+  getRolePermission,
+  assignRolePermission,
+  getPermissionList,
+  deletePermission,
+  addPermission,
+  updatePermission,
+} from './acl/permission'

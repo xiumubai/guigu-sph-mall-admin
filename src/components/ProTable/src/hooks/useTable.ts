@@ -71,9 +71,10 @@ export const useTable = (
       )
       let { data } = await api(state.totalParam)
       state.loading = false
+      // 修改后端返回的数据
       dataCallBack && (data = dataCallBack(data))
-      // TODO: 这里接口数据返回的有不一致的情况，有的可能是list，有的可能是items，需要手动改一下，类型声明也需要更改
-      state.tableData = isPageable ? data.records : data
+
+      state.tableData = isPageable ? data.list : data
       // 解构后台返回的分页数据
       const { pageNum, pageSize, total } = data
       // 分页信息有的接口并没有携带，需要做一个兼容
