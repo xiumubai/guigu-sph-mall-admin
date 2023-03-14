@@ -8,36 +8,44 @@
     >
       <!-- Expand -->
       <template #tableHeader>
-        <el-button type="primary" icon="Plus" @click="openDialog('新增')">
-          添加
-        </el-button>
+        <Auth :value="['btn.Role.add']">
+          <el-button type="primary" icon="Plus" @click="openDialog('新增')">
+            添加
+          </el-button>
+        </Auth>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
-        <el-button
-          type="primary"
-          link
-          icon="UserFilled"
-          @click="openDrawer('分配权限', scope.row)"
-        >
-          分配权限
-        </el-button>
-        <el-button
-          type="primary"
-          link
-          icon="Edit"
-          @click="openDialog('编辑', scope.row)"
-        >
-          编辑
-        </el-button>
-        <el-button
-          type="primary"
-          link
-          icon="Delete"
-          @click="handleDelete(scope.row)"
-        >
-          删除
-        </el-button>
+        <Auth :value="['btn.Role.assgin']">
+          <el-button
+            type="primary"
+            link
+            icon="UserFilled"
+            @click="openDrawer('分配权限', scope.row)"
+          >
+            分配权限
+          </el-button>
+        </Auth>
+        <Auth :value="['btn.Role.update']">
+          <el-button
+            type="primary"
+            link
+            icon="Edit"
+            @click="openDialog('编辑', scope.row)"
+          >
+            编辑
+          </el-button>
+        </Auth>
+        <Auth :value="['btn.Role.remove']">
+          <el-button
+            type="primary"
+            link
+            icon="Delete"
+            @click="handleDelete(scope.row)"
+          >
+            删除
+          </el-button>
+        </Auth>
       </template>
     </ProTable>
     <RoleDialog ref="DialogRef" />
@@ -60,6 +68,7 @@ import {
   getRolePermission,
   assignRolePermission,
 } from '@/api'
+import { Auth } from '@/components/Auth'
 
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
