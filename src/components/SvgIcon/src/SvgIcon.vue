@@ -20,7 +20,7 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: '',
+    default: '#ffffff',
   },
   size: {
     type: [Number, String],

@@ -21,6 +21,7 @@ specifiers:
   eslint-plugin-vue: ^9.9.0
   husky: ^8.0.0
   lint-staged: ^13.1.0
+  mitt: ^3.0.0
   mockjs: ^1.1.0
   nprogress: ^0.2.0
   path-browserify: ^1.0.1
@@ -46,6 +47,7 @@ specifiers:
   vite-plugin-mock: ^2.9.6
   vite-plugin-svg-icons: ^2.0.1
   vite-plugin-vue-setup-extend: ^0.4.0
+  vite-svg-loader: ^4.0.0
   vue: ^3.2.45
   vue-router: '4'
   vue-tsc: ^1.0.11
@@ -79,6 +81,7 @@ devDependencies:
   eslint-plugin-vue: registry.npmmirror.com/eslint-plugin-vue/9.9.0_eslint@8.33.0
   husky: registry.npmmirror.com/husky/8.0.3
   lint-staged: registry.npmmirror.com/lint-staged/13.1.0
+  mitt: registry.npmmirror.com/mitt/3.0.0
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   postcss: registry.npmmirror.com/postcss/8.4.21
   postcss-html: registry.npmmirror.com/postcss-html/1.5.0
@@ -100,6 +103,7 @@ devDependencies:
   vite-plugin-mock: registry.npmmirror.com/vite-plugin-mock/2.9.6_mockjs@1.1.0+vite@4.0.4
   vite-plugin-svg-icons: registry.npmmirror.com/vite-plugin-svg-icons/2.0.1_vite@4.0.4
   vite-plugin-vue-setup-extend: registry.npmmirror.com/vite-plugin-vue-setup-extend/0.4.0_vite@4.0.4
+  vite-svg-loader: registry.npmmirror.com/vite-svg-loader/4.0.0
   vue-tsc: registry.npmmirror.com/vue-tsc/1.0.24_typescript@4.9.4
 
 packages:
@@ -237,7 +241,7 @@ packages:
     version: 7.18.6
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': registry.npmmirror.com/@babel/types/7.20.7
+      '@babel/types': registry.npmmirror.com/@babel/types/7.21.2
     dev: true
 
   registry.npmmirror.com/@babel/helper-compilation-targets/7.20.7_@babel+core@7.21.0:
@@ -347,7 +351,7 @@ packages:
     version: 7.18.6
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': registry.npmmirror.com/@babel/types/7.20.7
+      '@babel/types': registry.npmmirror.com/@babel/types/7.21.2
     dev: true
 
   registry.npmmirror.com/@babel/helper-plugin-utils/7.20.2:
@@ -368,7 +372,7 @@ packages:
       '@babel/helper-optimise-call-expression': registry.npmmirror.com/@babel/helper-optimise-call-expression/7.18.6
       '@babel/template': registry.npmmirror.com/@babel/template/7.20.7
       '@babel/traverse': registry.npmmirror.com/@babel/traverse/7.21.2
-      '@babel/types': registry.npmmirror.com/@babel/types/7.20.7
+      '@babel/types': registry.npmmirror.com/@babel/types/7.21.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -388,7 +392,7 @@ packages:
     version: 7.20.0
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': registry.npmmirror.com/@babel/types/7.20.7
+      '@babel/types': registry.npmmirror.com/@babel/types/7.21.2
     dev: true
 
   registry.npmmirror.com/@babel/helper-split-export-declaration/7.18.6:
@@ -397,7 +401,7 @@ packages:
     version: 7.18.6
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': registry.npmmirror.com/@babel/types/7.20.7
+      '@babel/types': registry.npmmirror.com/@babel/types/7.21.2
     dev: true
 
   registry.npmmirror.com/@babel/helper-string-parser/7.19.4:
@@ -2529,6 +2533,18 @@ packages:
       nth-check: registry.npmmirror.com/nth-check/2.1.1
     dev: true
 
+  registry.npmmirror.com/css-select/5.1.0:
+    resolution: {integrity: sha512-nwoRF1rvRRnnCqqY7updORDsuqKzqYJ28+oSMaJMMgOauh3fvwHqMS7EZpIPqK8GL+g9mKxF1vP/ZjSeNjEVHg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-select/-/css-select-5.1.0.tgz}
+    name: css-select
+    version: 5.1.0
+    dependencies:
+      boolbase: registry.npmmirror.com/boolbase/1.0.0
+      css-what: registry.npmmirror.com/css-what/6.1.0
+      domhandler: registry.npmmirror.com/domhandler/5.0.3
+      domutils: registry.npmmirror.com/domutils/3.0.1
+      nth-check: registry.npmmirror.com/nth-check/2.1.1
+    dev: true
+
   registry.npmmirror.com/css-tree/1.1.3:
     resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-tree/-/css-tree-1.1.3.tgz}
     name: css-tree
@@ -2537,6 +2553,26 @@ packages:
     dependencies:
       mdn-data: registry.npmmirror.com/mdn-data/2.0.14
       source-map: registry.npmmirror.com/source-map/0.6.1
+    dev: true
+
+  registry.npmmirror.com/css-tree/2.2.1:
+    resolution: {integrity: sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-tree/-/css-tree-2.2.1.tgz}
+    name: css-tree
+    version: 2.2.1
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+    dependencies:
+      mdn-data: registry.npmmirror.com/mdn-data/2.0.28
+      source-map-js: registry.npmmirror.com/source-map-js/1.0.2
+    dev: true
+
+  registry.npmmirror.com/css-tree/2.3.1:
+    resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-tree/-/css-tree-2.3.1.tgz}
+    name: css-tree
+    version: 2.3.1
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
+    dependencies:
+      mdn-data: registry.npmmirror.com/mdn-data/2.0.30
+      source-map-js: registry.npmmirror.com/source-map-js/1.0.2
     dev: true
 
   registry.npmmirror.com/css-what/6.1.0:
@@ -2561,6 +2597,15 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       css-tree: registry.npmmirror.com/css-tree/1.1.3
+    dev: true
+
+  registry.npmmirror.com/csso/5.0.5:
+    resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/csso/-/csso-5.0.5.tgz}
+    name: csso
+    version: 5.0.5
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+    dependencies:
+      css-tree: registry.npmmirror.com/css-tree/2.2.1
     dev: true
 
   registry.npmmirror.com/csstype/2.6.21:
@@ -5025,6 +5070,18 @@ packages:
     version: 2.0.14
     dev: true
 
+  registry.npmmirror.com/mdn-data/2.0.28:
+    resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mdn-data/-/mdn-data-2.0.28.tgz}
+    name: mdn-data
+    version: 2.0.28
+    dev: true
+
+  registry.npmmirror.com/mdn-data/2.0.30:
+    resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mdn-data/-/mdn-data-2.0.30.tgz}
+    name: mdn-data
+    version: 2.0.30
+    dev: true
+
   registry.npmmirror.com/memoize-one/6.0.0:
     resolution: {integrity: sha512-rkpe71W0N0c0Xz6QD0eJETuWAJGnJ9afsl1srmwPrI+yBCkge5EycXXbYRyvL29zZVUWQCY7InPRCv3GDXuZNw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/memoize-one/-/memoize-one-6.0.0.tgz}
     name: memoize-one
@@ -5194,6 +5251,12 @@ packages:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/minimist/-/minimist-1.2.7.tgz}
     name: minimist
     version: 1.2.7
+    dev: true
+
+  registry.npmmirror.com/mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mitt/-/mitt-3.0.0.tgz}
+    name: mitt
+    version: 3.0.0
     dev: true
 
   registry.npmmirror.com/mixin-deep/1.3.2:
@@ -6895,6 +6958,21 @@ packages:
       stable: registry.npmmirror.com/stable/0.1.8
     dev: true
 
+  registry.npmmirror.com/svgo/3.0.2:
+    resolution: {integrity: sha512-Z706C1U2pb1+JGP48fbazf3KxHrWOsLme6Rv7imFBn5EnuanDW1GPaA/P1/dvObE670JDePC3mnj0k0B7P0jjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/svgo/-/svgo-3.0.2.tgz}
+    name: svgo
+    version: 3.0.2
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      '@trysound/sax': registry.npmmirror.com/@trysound/sax/0.2.0
+      commander: registry.npmmirror.com/commander/7.2.0
+      css-select: registry.npmmirror.com/css-select/5.1.0
+      css-tree: registry.npmmirror.com/css-tree/2.3.1
+      csso: registry.npmmirror.com/csso/5.0.5
+      picocolors: registry.npmmirror.com/picocolors/1.0.0
+    dev: true
+
   registry.npmmirror.com/table/6.8.1:
     resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/table/-/table-6.8.1.tgz}
     name: table
@@ -7307,6 +7385,15 @@ packages:
       '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc/3.2.45
       magic-string: registry.npmmirror.com/magic-string/0.25.9
       vite: registry.npmmirror.com/vite/4.0.4_n6fwdzqikzuvphifjfh4k645ae
+    dev: true
+
+  registry.npmmirror.com/vite-svg-loader/4.0.0:
+    resolution: {integrity: sha512-0MMf1yzzSYlV4MGePsLVAOqXsbF5IVxbn4EEzqRnWxTQl8BJg/cfwIzfQNmNQxZp5XXwd4kyRKF1LytuHZTnqA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-svg-loader/-/vite-svg-loader-4.0.0.tgz}
+    name: vite-svg-loader
+    version: 4.0.0
+    dependencies:
+      '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc/3.2.45
+      svgo: registry.npmmirror.com/svgo/3.0.2
     dev: true
 
   registry.npmmirror.com/vite/4.0.4_n6fwdzqikzuvphifjfh4k645ae:

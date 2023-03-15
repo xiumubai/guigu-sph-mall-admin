@@ -101,6 +101,8 @@ const handleSubmit = async () => {
     ElMessage.success({ message: `${drawerProps.value.title}成功！` })
     drawerProps.value.getTableList!()
     drawerVisible.value = false
+    // 角色分配成功，刷新当前页面
+    window.location.reload()
     loading.value = false
   } catch (error) {
     loading.value = true

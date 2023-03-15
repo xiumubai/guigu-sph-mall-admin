@@ -16,6 +16,7 @@
         </el-scrollbar>
       </div>
     </div>
+    <ThemeDrawer />
     <el-backtop />
   </div>
 </template>
@@ -29,7 +30,7 @@ import LayoutMain from './Main/index.vue'
 import LayoutSideBar from './SideBar/index.vue'
 import LayoutNavBar from './NavBar/index.vue'
 import LayoutTabsBar from './TabsBar/index.vue'
-
+import ThemeDrawer from './NavBar/components/ThemeDrawer/index.vue'
 export default defineComponent({
   components: {
     LayoutFooter,
@@ -37,6 +38,7 @@ export default defineComponent({
     LayoutSideBar,
     LayoutNavBar,
     LayoutTabsBar,
+    ThemeDrawer,
   },
   setup() {
     const settingsStore = useSettingsStore()

@@ -35,6 +35,7 @@ export default defineComponent({
     const authStore = useAuthStore()
     const route = useRoute()
     const collapse = computed(() => settingsStore.collapse)
+    const themeConfig = computed(() => settingsStore.themeConfig)
     const menuList = computed(() => authStore.authMenuList)
     const activeMenu = computed(() =>
       route.meta.activeMenu ? (route.meta.activeMenu as string) : route.path,
@@ -43,6 +44,7 @@ export default defineComponent({
       menuList,
       collapse,
       activeMenu,
+      themeConfig,
     }
   },
 })
@@ -56,7 +58,7 @@ export default defineComponent({
 
   &.is-active {
     color: $base-color-white;
-    background-color: $base-menu-background-active !important;
+    background-color: var(--el-color-primary) !important;
   }
 }
 

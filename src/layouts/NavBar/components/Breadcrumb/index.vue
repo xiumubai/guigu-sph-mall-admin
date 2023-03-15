@@ -61,9 +61,5 @@ export default defineComponent({
   > i {
     margin-right: 3px;
   }
-
-  > a {
-    color: #515a6e;
-  }
 }
 </style>

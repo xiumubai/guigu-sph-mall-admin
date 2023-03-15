@@ -4,10 +4,11 @@ import { SvgIcon } from './SvgIcon'
 import { SearchForm } from './SearchForm'
 import { ProTable } from './ProTable'
 import { Auth } from './Auth'
+import { SwitchDark } from './SwitchDark'
 
 const Components: {
   [propName: string]: Component
-} = { SvgIcon, SearchForm, ProTable, Auth }
+} = { SvgIcon, SearchForm, ProTable, Auth, SwitchDark }
 
 export default {
   install: (app: App) => {

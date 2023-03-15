@@ -81,8 +81,6 @@ const acceptParams = (params: DialogProps): void => {
     permissionData.value = row
   }
 
-  console.log(permissionData)
-
   title.value = getDialogTitle(params)
   dialogProps.value = params
   dialogVisible.value = true

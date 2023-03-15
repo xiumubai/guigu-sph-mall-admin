@@ -5,6 +5,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import svgLoader from 'vite-svg-loader'
 
 export default defineConfig((config) => {
   const { command, mode } = config
@@ -26,6 +27,8 @@ export default defineConfig((config) => {
       vueJsx(),
       // * name 可以写在 script 标签上
       VueSetupExtend(),
+      // * vite-svg-loader支持，可以直接引入svg图标当作组件使用
+      svgLoader(),
     ],
     resolve: {
       alias: {

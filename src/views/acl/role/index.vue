@@ -107,14 +107,11 @@ const openDialog = (title: string, rowData: Partial<Role.ResRoleList> = {}) => {
 
 // 打开Drawer
 const DrawerRef = ref()
-const openDrawer = async (
-  title: string,
-  rowData: Partial<Role.ResRoleList> = {},
-) => {
+const openDrawer = async (title: string, rowData: Role.ResRoleList) => {
   const params = {
     title: title,
     rowData,
-    list: await getRolePermission(rowData!.id || ''),
+    list: await getRolePermission(rowData!.id),
     api: assignRolePermission,
     getTableList: proTable.value.getTableList,
   }

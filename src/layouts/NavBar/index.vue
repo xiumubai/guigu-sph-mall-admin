@@ -2,8 +2,8 @@
  * @Description: 
  * @Autor: 李海波
  * @Date: 2023-03-03 13:41:05
- * @LastEditors: 李海波
- * @LastEditTime: 2023-03-03 13:59:59
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-03-14 15:41:14
 -->
 <template>
   <div class="nav-bar-container">
@@ -20,6 +20,7 @@
         <div class="right-panel">
           <Refresh />
           <ScreenFull />
+          <Settings />
           <User />
         </div>
       </el-col>
@@ -34,12 +35,14 @@ import User from './components/User/index.vue'
 import Breadcrumb from './components/Breadcrumb/index.vue'
 import Refresh from './components/Refresh/index.vue'
 import ScreenFull from './components/ScreeFull/index.vue'
+import Settings from './components/Settings/index.vue'
 export default defineComponent({
   components: {
     Refresh,
     User,
     ScreenFull,
     Breadcrumb,
+    Settings,
   },
   setup() {
     const settingsStore = useSettingsStore()

@@ -3,5 +3,8 @@
 </template>
 
 <script setup lang="ts">
-// import SvgIcon from '@/components/SvgIcon/src/SvgIcon.vue'
+import { useTheme } from './hooks/useTheme'
+// 初始化主题配置
+const { initTheme } = useTheme()
+initTheme()
 </script>
