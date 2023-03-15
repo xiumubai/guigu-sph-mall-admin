@@ -3,7 +3,7 @@
  * @Autor: 李海波
  * @Date: 2023-03-03 13:39:38
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-15 15:32:11
+ * @LastEditTime: 2023-03-15 17:19:06
 -->
 <template>
   <div class="m-screenful">
@@ -13,12 +13,12 @@
       placement="bottom"
     >
       <SvgIcon
-        size="16"
+        size="18"
         name="full-screen"
         v-if="!isFullscreen"
         @click="toggle"
       />
-      <SvgIcon size="16" name="exit-full" v-else @click="toggle" />
+      <SvgIcon size="18" name="exit-full" v-else @click="toggle" />
     </el-tooltip>
   </div>
 </template>

@@ -8,7 +8,7 @@
 <template>
   <div class="btn">
     <el-tooltip effect="dark" content="刷新">
-      <el-icon :size="16" @click="onRefresh">
+      <el-icon :size="18" @click="onRefresh">
         <Refresh />
       </el-icon>
     </el-tooltip>

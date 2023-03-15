@@ -57,14 +57,20 @@ html.dark {
   .nav-bar-container {
     background-color: var(--v-bg-color) !important;
 
-    .el-icon {
-      color: #fff !important;
-    }
+    // .el-icon {
+    //   color: #fff !important;
+    // }
   }
 
   .tabs-bar-container {
     background-color: var(--v-bg-color) !important;
     border-top: 1px solid var(--el-border-color-light) !important;
+
+    .tabs-action {
+      .el-icon {
+        color: #fff !important;
+      }
+    }
 
     .el-tabs__item.is-active {
       color: var(--el-color-primary);
