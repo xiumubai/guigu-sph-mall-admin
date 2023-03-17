@@ -9,7 +9,7 @@
         active-text-color="#fff"
         :defaultActive="activeMenu"
         :collapse="collapse"
-        :unique-opened="false"
+        :unique-opened="true"
       >
         <sub-menu :menuList="menuList"></sub-menu>
       </el-menu>

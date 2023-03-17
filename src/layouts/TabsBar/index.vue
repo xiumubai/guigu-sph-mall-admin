@@ -3,7 +3,7 @@
  * @Autor: 李海波
  * @Date: 2023-03-02 17:50:49
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-06 11:12:29
+ * @LastEditTime: 2023-03-17 11:53:51
 -->
 <template>
   <div class="tabs-bar-container">
@@ -24,7 +24,11 @@
           :closable="!(item.meta && item.meta.affix)"
         >
           <template #label>
-            <el-icon class="tabs-icon" v-if="item.meta && item.meta.icon">
+            <el-icon
+              size="16"
+              class="tabs-icon"
+              v-if="item.meta && item.meta.icon"
+            >
               <component :is="item.meta.icon"></component>
             </el-icon>
             {{ item.title }}
