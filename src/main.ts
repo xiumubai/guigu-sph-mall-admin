@@ -16,6 +16,8 @@ import '@/styles/reset.scss'
 import 'element-plus/dist/index.css'
 // 公共样式，包含自定义暗黑模式，element重置样式
 import '@/styles/index.scss'
+// 字体样式
+import '@/assets/fonts/font.scss'
 
 /** 加载异步路由 */
 import '@/router/initDynamicRouter'
