@@ -84,7 +84,7 @@ $base-left-menu-width: 256px;
 $base-right-content-width: calc(100% - #{$base-left-menu-width});
 
 // 纵向布局时左侧导航已折叠时的宽度
-$base-left-menu-width-min: 80px;
+$base-left-menu-width-min: 64px;
 
 // 纵向布局时左侧导航已折叠时右侧内容的宽度
 $base-right-content-width-min: calc(100% - #{$base-left-menu-width-min});

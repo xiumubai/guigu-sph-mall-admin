@@ -5,6 +5,7 @@ specifiers:
   '@commitlint/cli': ^17.4.2
   '@commitlint/config-conventional': ^17.4.2
   '@element-plus/icons-vue': ^2.0.10
+  '@iconify/vue': ^4.1.0
   '@types/node': ^18.11.18
   '@typescript-eslint/eslint-plugin': ^5.49.0
   '@typescript-eslint/parser': ^5.49.0
@@ -68,6 +69,7 @@ devDependencies:
   '@babel/eslint-parser': registry.npmmirror.com/@babel/eslint-parser/7.19.1_eslint@8.33.0
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/17.4.2
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/17.4.2
+  '@iconify/vue': registry.npmmirror.com/@iconify/vue/4.1.0_vue@3.2.45
   '@types/node': registry.npmmirror.com/@types/node/18.11.18
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.49.0_rsaczafy73x3xqauzesvzbsgzy
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.49.0_zkdaqh7it7uc4cvz2haft7rc6u
@@ -1093,6 +1095,24 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz}
     name: '@humanwhocodes/object-schema'
     version: 1.2.1
+    dev: true
+
+  registry.npmmirror.com/@iconify/types/2.0.0:
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/types/-/types-2.0.0.tgz}
+    name: '@iconify/types'
+    version: 2.0.0
+    dev: true
+
+  registry.npmmirror.com/@iconify/vue/4.1.0_vue@3.2.45:
+    resolution: {integrity: sha512-rBQVxNoSDooqgWkQg2MqkIHkH/huNuvXGqui5wijc1zLnU7TKzbBHW9VGmbnV4asNTmIHmqV4Nvt0M2rZ/9nHA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/vue/-/vue-4.1.0.tgz}
+    id: registry.npmmirror.com/@iconify/vue/4.1.0
+    name: '@iconify/vue'
+    version: 4.1.0
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      '@iconify/types': registry.npmmirror.com/@iconify/types/2.0.0
+      vue: registry.npmmirror.com/vue/3.2.45
     dev: true
 
   registry.npmmirror.com/@jridgewell/gen-mapping/0.1.1:

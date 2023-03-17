@@ -3,14 +3,12 @@
  * @Autor: 李海波
  * @Date: 2023-03-03 13:41:05
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-15 17:19:12
+ * @LastEditTime: 2023-03-17 11:05:35
 -->
 <template>
   <div class="btn">
     <el-tooltip effect="dark" content="系统设置">
-      <el-icon :size="18" @click="onSetting">
-        <Setting />
-      </el-icon>
+      <IconifyIcon icon="ep:setting" height="16" @click="onSetting" />
     </el-tooltip>
   </div>
 </template>

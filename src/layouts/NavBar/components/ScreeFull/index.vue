@@ -3,7 +3,7 @@
  * @Autor: 李海波
  * @Date: 2023-03-03 13:39:38
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-15 17:19:06
+ * @LastEditTime: 2023-03-17 11:05:27
 -->
 <template>
   <div class="m-screenful">
@@ -12,13 +12,18 @@
       :content="!isFullscreen ? '全屏' : '收起'"
       placement="bottom"
     >
-      <SvgIcon
-        size="18"
-        name="full-screen"
+      <IconifyIcon
         v-if="!isFullscreen"
         @click="toggle"
+        icon="fluent:full-screen-maximize-24-filled"
+        height="16"
       />
-      <SvgIcon size="18" name="exit-full" v-else @click="toggle" />
+      <IconifyIcon
+        v-else
+        @click="toggle"
+        icon="fluent:full-screen-minimize-24-filled"
+        height="18"
+      />
     </el-tooltip>
   </div>
 </template>

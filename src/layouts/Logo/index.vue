@@ -2,17 +2,19 @@
   <div class="logo-container flex-center">
     <a href="/">
       <img class="logo" alt="logo" src="/logo.png" />
-      <h1 class="title">尚品汇后台管理</h1>
+      <h1 class="title" v-if="!collapse">尚品汇后台管理</h1>
     </a>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, computed } from 'vue'
+import { useSettingsStore } from '@/store/modules/settings'
 export default defineComponent({
   setup() {
-    return {}
+    const settingsStore = useSettingsStore()
+    const collapse = computed(() => settingsStore.collapse)
+    return { collapse }
   },
 })
 </script>
@@ -20,19 +22,22 @@ export default defineComponent({
 <style scoped lang="scss">
 .logo-container {
   position: relative;
-  overflow: hidden;
-  padding-left: 24px;
+  display: flex;
+  justify-content: center;
+
+  // padding-left: 24px;
   height: 60px;
-  background: transparent;
+  overflow: hidden;
   line-height: 60px;
+  background: transparent;
 
   .title {
     display: inline-block;
     margin-left: 12px;
-    font-size: 20px;
     font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    color: #fff;
+    font-size: 20px;
     font-weight: 600;
+    color: #fff;
     vertical-align: middle;
   }
 
