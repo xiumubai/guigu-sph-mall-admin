@@ -3,7 +3,7 @@
  * @Autor: 李海波
  * @Date: 2023-03-03 13:39:38
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-17 11:05:27
+ * @LastEditTime: 2023-03-17 11:41:48
 -->
 <template>
   <div class="m-screenful">
@@ -12,18 +12,18 @@
       :content="!isFullscreen ? '全屏' : '收起'"
       placement="bottom"
     >
-      <IconifyIcon
-        v-if="!isFullscreen"
-        @click="toggle"
-        icon="fluent:full-screen-maximize-24-filled"
-        height="16"
-      />
-      <IconifyIcon
-        v-else
-        @click="toggle"
-        icon="fluent:full-screen-minimize-24-filled"
-        height="18"
-      />
+      <el-button circle @click="toggle">
+        <IconifyIcon
+          v-if="!isFullscreen"
+          icon="fluent:full-screen-maximize-24-filled"
+          height="16"
+        />
+        <IconifyIcon
+          v-else
+          icon="fluent:full-screen-minimize-24-filled"
+          height="18"
+        />
+      </el-button>
     </el-tooltip>
   </div>
 </template>
