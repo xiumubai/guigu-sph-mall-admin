@@ -49,6 +49,11 @@
       border: 0;
     }
 
+    .tabs-icon {
+      top: 3px;
+      font-size: 15px;
+    }
+
     .el-tabs__item {
       box-sizing: border-box;
       height: $base-tag-item-height;
@@ -72,10 +77,6 @@
       mask: url('@/assets/images/tabbar-bg.png');
       -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
-    }
-
-    .tabs-icon {
-      height: 14px;
     }
   }
 }
