@@ -62,6 +62,12 @@ html.dark {
     // }
   }
 
+  .table-header {
+    .el-icon {
+      color: #fff;
+    }
+  }
+
   .tabs-bar-container {
     background-color: var(--v-bg-color) !important;
     border-top: 1px solid var(--el-border-color-light) !important;

@@ -79,9 +79,10 @@ const getCheckedIds = (
   initArr: string[] = [],
 ): string[] => {
   auths.forEach((item: Permission.ResPermisionList) => {
-    if (item.select && item.level === 4) {
+    if (item.select) {
       initArr.push(item.id as string)
-    } else if (item.children) {
+    }
+    if (item.children) {
       getCheckedIds(item.children, initArr)
     }
   })
