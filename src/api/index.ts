@@ -22,4 +22,9 @@ export {
 
 export { getCategorys1, getCategorys2, getCategorys3 } from './product/category'
 
-export { getTrademarkList, removeTrademark } from './product/trademark'
+export {
+  getTrademarkList,
+  removeTrademark,
+  addTrademark,
+  updateTrademark,
+} from './product/trademark'

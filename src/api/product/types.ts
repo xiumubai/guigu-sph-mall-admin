@@ -14,6 +14,11 @@ export namespace Category {
 }
 
 export namespace Trademark {
+  export interface ReqTradeMark {
+    id?: number
+    logoUrl: string
+    tmName: string
+  }
   export interface ResTradeMarkList {
     createTime: string
     id: number
