@@ -28,3 +28,9 @@ export {
   addTrademark,
   updateTrademark,
 } from './product/trademark'
+
+export { getActivityList } from './marketing/activity'
+export { getCouponList } from './marketing/coupon'
+
+export { getOrderList } from './order/order-list'
+export { getRefundList } from './order/refund-list'
