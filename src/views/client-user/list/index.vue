@@ -9,13 +9,24 @@
       <!-- 表格操作 -->
       <template #operation="scope">
         <el-button
+          type="danger"
+          link
+          icon="Lock"
+          v-auth="['btn.User.update']"
+          v-if="scope.row.status"
+          @click="handleLock(scope.row)"
+        >
+          封禁
+        </el-button>
+        <el-button
           type="primary"
           link
-          icon="View"
+          icon="Unlock"
+          v-else
           v-auth="['btn.User.update']"
-          @click="openDrawer('编辑', scope.row)"
+          @click="handleLock(scope.row)"
         >
-          查看
+          启用
         </el-button>
       </template>
     </ProTable>
@@ -23,11 +34,11 @@
 </template>
 
 <script setup lang="tsx">
-import { getClientUserList } from '@/api'
+import { getClientUserList, lockClientUser } from '@/api'
 import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
-import { Order } from '@/api/order/types'
-
+import { ClientUser } from '@/api/client-user/types'
+import { useHandleData } from '@/hooks/useHandleData'
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
@@ -67,19 +78,15 @@ const dataCallback = (data: any) => {
   }
 }
 
-// *新增、编辑
-const drawerRef = ref()
-const openDrawer = async (
-  title: string,
-  rowData: Partial<Order.ResOrderList> = {},
-) => {
-  let params = {
-    title,
-    rowData: { ...rowData },
-    api: '',
-    getTableList: proTable.value.getTableList,
-  }
-  drawerRef.value.acceptParams(params)
+// 锁定用户
+const handleLock = async (row: ClientUser.ResClientUserList) => {
+  const status = row.status ? 0 : 1
+  await useHandleData(
+    lockClientUser,
+    { id: row.id, status: status },
+    `${status ? '启用' : '封禁'}`,
+  )
+  proTable.value.getTableList()
 }
 </script>
 

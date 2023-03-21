@@ -35,4 +35,4 @@ export { getCouponList } from './marketing/coupon'
 export { getOrderList } from './order/order-list'
 export { getRefundList } from './order/refund-list'
 
-export { getClientUserList } from './client-user/user-list'
+export { getClientUserList, lockClientUser } from './client-user/user-list'
