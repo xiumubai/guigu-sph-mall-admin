@@ -69,10 +69,8 @@ const columns: ColumnProps[] = [
     render: ({ row }) => {
       return (
         <>
-          <el-image
-            model-url={row.logoUrl}
-            style="width: 100px; height: 100px"
-          />
+          {/* <img src={row.logoUrl} style="width: 100px; height: 100px;" /> */}
+          <el-image src={row.logoUrl} style="width: 100px; height: 100px" />
         </>
       )
     },
