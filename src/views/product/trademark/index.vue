@@ -69,8 +69,11 @@ const columns: ColumnProps[] = [
     render: ({ row }) => {
       return (
         <>
-          {/* <img src={row.logoUrl} style="width: 100px; height: 100px;" /> */}
-          <el-image src={row.logoUrl} style="width: 100px; height: 100px" />
+          <el-image
+            src={row.logoUrl}
+            style="height: 100px; width: 100px;"
+            fit="cover"
+          />
         </>
       )
     },
