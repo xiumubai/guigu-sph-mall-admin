@@ -19,3 +19,7 @@ export {
   addPermission,
   updatePermission,
 } from './acl/permission'
+
+export { getCategorys1, getCategorys2, getCategorys3 } from './product/category'
+
+export { getTrademarkList, removeTrademark } from './product/trademark'
