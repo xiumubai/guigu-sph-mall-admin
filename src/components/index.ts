@@ -6,10 +6,19 @@ import { ProTable } from './ProTable'
 import { Auth } from './Auth'
 import { SwitchDark } from './SwitchDark'
 import { IconifyIcon } from './IconifyIcon'
+import { CategorySelector } from './CategorySelector'
 
 const Components: {
   [propName: string]: Component
-} = { SvgIcon, SearchForm, ProTable, Auth, SwitchDark, IconifyIcon }
+} = {
+  SvgIcon,
+  SearchForm,
+  ProTable,
+  Auth,
+  SwitchDark,
+  IconifyIcon,
+  CategorySelector,
+}
 
 export default {
   install: (app: App) => {

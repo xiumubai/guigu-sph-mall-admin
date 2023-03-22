@@ -27,3 +27,26 @@ export namespace Trademark {
     updateTime: string
   }
 }
+
+interface AttrList {
+  attrId: number
+  id?: number
+  valueName: string
+}
+
+export namespace Attr {
+  export interface ResAttrList {
+    attrName: string
+    attrValueList: AttrList[]
+    categoryId: number
+    categoryLevel: number
+    id: number
+  }
+  export interface ReqAttrData {
+    attrName: string
+    attrValueList: AttrList[]
+    categoryId: number
+    categoryLevel: number
+    id?: number
+  }
+}

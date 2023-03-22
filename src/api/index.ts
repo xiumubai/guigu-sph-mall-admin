@@ -43,3 +43,5 @@ export {
   updateBanner,
   removeBanner,
 } from './setting/banner'
+
+export { getAttrList, removeAttr, addAttr } from './product/attr'
