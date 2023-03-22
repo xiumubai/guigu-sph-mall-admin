@@ -7,7 +7,12 @@
       :requestApi="getBannerList"
     >
       <template #tableHeader>
-        <el-button type="primary" icon="Plus" @click="openDrawer('新增')">
+        <el-button
+          type="primary"
+          icon="Plus"
+          @click="openDrawer('新增')"
+          v-auth="['Banner.Btn.Add']"
+        >
           添加
         </el-button>
       </template>
@@ -17,6 +22,7 @@
           type="primary"
           link
           icon="Edit"
+          v-auth="['Banner.Btn.Edit']"
           @click="openDrawer('编辑', scope.row)"
         >
           修改
@@ -25,22 +31,24 @@
           type="danger"
           link
           icon="Delete"
-          @click="openDrawer('编辑', scope.row)"
+          v-auth="['Banner.Btn.Delete']"
+          @click="handleDelete(scope.row)"
         >
           删除
         </el-button>
       </template>
     </ProTable>
-    <!-- <CouponDrawer ref="drawerRef" /> -->
+    <BannerDrawer ref="drawerRef" />
   </div>
 </template>
 
 <script setup lang="tsx">
-import { getBannerList } from '@/api'
+import { getBannerList, saveBanner, updateBanner, removeBanner } from '@/api'
 import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
-// import CouponDrawer from './components/CouponDrawer.vue'
-import { Order } from '@/api/order/types'
+import BannerDrawer from './components/BannerDrawer.vue'
+import { useHandleData } from '@/hooks/useHandleData'
+import { Banner } from '@/api/setting/types'
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
@@ -50,12 +58,25 @@ const columns: ColumnProps[] = [
     render: ({ row }) => {
       return (
         <>
-          <el-image src={row.imageUrl} />
+          <el-image src={row.imageUrl} lazy />
         </>
       )
     },
   },
-  { prop: 'linkUrl', label: '跳转链接' },
+  {
+    prop: 'linkUrl',
+    label: '跳转链接',
+    render: ({ row }) => {
+      return (
+        <>
+          <el-link href={row.linkUrl} target="_blank" type="primary">
+            {row.linkUrl}
+          </el-link>
+        </>
+      )
+    },
+  },
+  { prop: 'title', label: '标题' },
   { prop: 'sort', label: '排序' },
   { prop: 'operation', label: '操作', fixed: 'right', width: 150 },
 ]
@@ -74,15 +95,21 @@ const dataCallback = (data: any) => {
 const drawerRef = ref()
 const openDrawer = async (
   title: string,
-  rowData: Partial<Order.ResOrderList> = {},
+  rowData: Partial<Banner.ResBannerList> = {},
 ) => {
   let params = {
     title,
     rowData: { ...rowData },
-    api: '',
+    api: title === '编辑' ? updateBanner : saveBanner,
     getTableList: proTable.value.getTableList,
   }
   drawerRef.value.acceptParams(params)
+}
+
+// *根据id删除品牌
+const handleDelete = async (row: Banner.ResBannerList) => {
+  await useHandleData(removeBanner, row.id, `删除${row.title}`)
+  proTable.value.getTableList()
 }
 </script>
 

@@ -37,4 +37,9 @@ export { getRefundList } from './order/refund-list'
 
 export { getClientUserList, lockClientUser } from './client-user/user-list'
 
-export { getBannerList } from './setting/banner'
+export {
+  getBannerList,
+  saveBanner,
+  updateBanner,
+  removeBanner,
+} from './setting/banner'

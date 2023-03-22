@@ -12,14 +12,14 @@
       :rules="rules"
       :model="drawerProps.rowData"
     >
-      <el-form-item label="品牌名称" prop="tmName">
+      <el-form-item label="标题" prop="title">
         <el-input
-          v-model="drawerProps.rowData!.tmName"
+          v-model="drawerProps.rowData!.title"
           placeholder="请填写品牌名称"
           clearable
         ></el-input>
       </el-form-item>
-      <el-form-item label="品牌Logo" prop="logoUrl">
+      <el-form-item label="Banner" prop="imageUrl">
         <el-upload
           class="avatar-uploader"
           :action="`dev-api/admin/product/fileUpload`"
@@ -28,8 +28,8 @@
           :before-upload="beforeAvatarUpload"
         >
           <img
-            v-if="drawerProps.rowData!.logoUrl"
-            :src="drawerProps.rowData!.logoUrl"
+            v-if="drawerProps.rowData!.imageUrl"
+            :src="drawerProps.rowData!.imageUrl"
             class="avatar"
           />
           <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
@@ -37,6 +37,16 @@
             <div class="el-upload__tip">只能上传jpg/png文件，且不超过50kb</div>
           </template>
         </el-upload>
+      </el-form-item>
+      <el-form-item label="链接" prop="linkUrl">
+        <el-input
+          v-model="drawerProps.rowData!.linkUrl"
+          placeholder="请填写跳转链接"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="排序" prop="sort">
+        <el-input-number v-model="drawerProps.rowData!.sort" :min="1" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -60,11 +70,10 @@ interface DrawerProps {
 }
 
 const rules = reactive({
-  tmName: [
-    { required: true, message: '请填写品牌名称' },
-    { min: 2, message: '用户名不能小于2位' },
-  ],
-  logoUrl: [{ required: true, message: '请上传品牌Logo' }],
+  title: [{ required: true, message: '请填写banner名称' }],
+  imageUrl: [{ required: true, message: '请上传Banner图片' }],
+  linkUrl: [{ required: true, message: '请填写跳转地址' }],
+  sort: [{ required: true, message: '请填写排序' }],
 })
 
 // drawer框状态
@@ -83,12 +92,12 @@ const acceptParams = (params: DrawerProps): void => {
 const handleAvatarSuccess: UploadProps['onSuccess'] = (res, file) => {
   // 保存请求返回的图片url数据
   console.log(res, file)
-  drawerProps.value.rowData.logoUrl = res.data
+  drawerProps.value.rowData.imageUrl = res.data
 }
 
 const beforeAvatarUpload = (file: any) => {
   const isJPGOrPNG = ['image/jpeg', 'image/png'].indexOf(file.type) >= 0
-  const isLt50K = file.size / 1024 < 50
+  const isLt50K = file.size / 1024 > 50
 
   if (!isJPGOrPNG) {
     ElMessage.error('上传头像图片只能是 JPG/PNG 格式!')
@@ -123,8 +132,11 @@ defineExpose({
 </script>
 <style lang="scss" scoped>
 .avatar-uploader {
+  width: 100%;
+
   :deep(.el-upload) {
     position: relative;
+    width: 100%;
     overflow: hidden;
     cursor: pointer;
     border: 1px dashed var(--el-border-color);
@@ -138,7 +150,7 @@ defineExpose({
 }
 
 .el-icon.avatar-uploader-icon {
-  width: 178px;
+  width: 100%;
   height: 178px;
   font-size: 28px;
   color: #8c939d;
@@ -147,7 +159,7 @@ defineExpose({
 
 .avatar {
   display: block;
-  width: 178px;
+  width: 100%;
   height: 178px;
 }
 </style>
