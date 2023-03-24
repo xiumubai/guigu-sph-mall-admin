@@ -25,7 +25,7 @@
           v-auth="['btn.User.assgin']"
           @click="openDrawer('分配角色', scope.row)"
         >
-          分配规则
+          规则
         </el-button>
         <el-button
           type="primary"
@@ -37,7 +37,7 @@
           编辑
         </el-button>
         <el-button
-          type="primary"
+          type="danger"
           link
           icon="Delete"
           v-auth="'btn.User.remove'"
@@ -52,11 +52,13 @@
 </template>
 
 <script setup lang="tsx">
-import { getCouponList } from '@/api'
+import { getCouponList, removeCoupon } from '@/api'
 import { ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/src/types'
 import CouponDrawer from './components/CouponDrawer.vue'
 import { Coupon } from '@/api/marketing/types'
+import { useHandleData } from '@/hooks/useHandleData'
+
 // *表格配置项
 const columns: ColumnProps[] = [
   { type: 'index', label: '#', width: 80 },
@@ -75,13 +77,13 @@ const columns: ColumnProps[] = [
       return <div>减金额{row.benefitAmount}</div>
     },
   },
-  { prop: 'limitNum', label: '最多领用次数', width: 110 },
+  { prop: 'limitNum', label: '用户领取数量', width: 110 },
   { prop: 'startTime', label: '开始时间', sortable: true, width: 110 },
-  { prop: 'endTime', label: '开始时间', sortable: true, width: 110 },
+  { prop: 'endTime', label: '结束时间', sortable: true, width: 110 },
   { prop: 'expireTime', label: '过期时间', sortable: true, width: 110 },
-  { prop: 'createTime', label: '创建时间', sortable: true, width: 110 },
   { prop: 'operation', label: '操作', fixed: 'right', width: 280 },
 ]
+
 // *获取 ProTable 元素，调用其获取刷新数据方法
 const proTable = ref()
 
@@ -108,8 +110,9 @@ const openDrawer = async (
   drawerRef.value.acceptParams(params)
 }
 
-const handleDelete = (row: Coupon.ResCouponlist) => {
-  console.log(row)
+const handleDelete = async (row: Coupon.ResCouponlist) => {
+  await useHandleData(removeCoupon, row.id, `删除${row.couponName}用户`)
+  proTable.value.getTableList()
 }
 </script>
 

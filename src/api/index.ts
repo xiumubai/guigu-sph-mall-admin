@@ -30,7 +30,7 @@ export {
 } from './product/trademark'
 
 export { getActivityList } from './marketing/activity'
-export { getCouponList } from './marketing/coupon'
+export { getCouponList, removeCoupon } from './marketing/coupon'
 
 export { getOrderList } from './order/order-list'
 export { getRefundList } from './order/refund-list'
@@ -45,3 +45,5 @@ export {
 } from './setting/banner'
 
 export { getAttrList, removeAttr, addAttr } from './product/attr'
+
+export { getSkuList } from './product/sku'

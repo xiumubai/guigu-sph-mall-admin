@@ -3,15 +3,39 @@
     v-model="drawerVisible"
     :destroy-on-close="true"
     size="450px"
-    :title="`${drawerProps.title}活动`"
+    :title="`${drawerProps.title}优惠券`"
   >
     <el-form
       ref="ruleFormRef"
-      label-width="100px"
+      label-width="110px"
       label-suffix=" :"
       :rules="rules"
       :model="drawerProps.rowData"
-    ></el-form>
+    >
+      <el-form-item label="优惠券名称" prop="couponName">
+        <el-input
+          v-model="drawerProps.rowData!.couponName"
+          placeholder="请填写优惠券名称"
+          clearable
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="优惠券类型" prop="couponType">
+        <el-radio-group v-model="drawerProps.rowData!.couponType">
+          <el-radio :label="3">现金券</el-radio>
+          <el-radio :label="6">折扣券</el-radio>
+          <el-radio :label="9">满减券</el-radio>
+          <el-radio :label="9">满量打折券</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="用户领取数量" prop="limitNum">
+        <el-input-number
+          v-model="drawerProps.rowData!.limitNum"
+          :min="1"
+          :max="100"
+        />
+        <div class="info">填写每个用户可以领取多少张</div>
+      </el-form-item>
+    </el-form>
     <template #footer>
       <el-button @click="drawerVisible = false">取消</el-button>
       <el-button type="primary" @click="handleSubmit" :loading="loading">
@@ -24,7 +48,7 @@
 <script setup lang="ts" name="UserDrawer">
 import { ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import type { Roles } from '@/api/acl/types'
+// import type { Roles } from '@/api/acl/types'
 interface DrawerProps {
   title: string
   rowData?: any
@@ -32,18 +56,10 @@ interface DrawerProps {
   api?: (params: any) => Promise<any>
   getTableList?: () => Promise<any>
 }
-
-interface RolesState {
-  allRolesList: Roles[]
-  assignRoles: string[]
-  checkAll: boolean
-  isIndeterminate: boolean
-}
-
 const rules = reactive({
-  username: [
-    { required: true, message: '请填写用户姓名' },
-    { min: 4, message: '用户名不能小于4位' },
+  couponName: [
+    { required: true, message: '请填写优惠券名称' },
+    { min: 2, message: '用户名不能小于2位' },
   ],
   password: [
     { required: true, message: '请填写用户密码' },
@@ -59,21 +75,8 @@ const drawerProps = ref<DrawerProps>({
 
 const loading = ref<boolean>(false)
 
-// 角色选择状态管理
-const state: RolesState = reactive({
-  allRolesList: [],
-  assignRoles: [],
-  checkAll: false,
-  isIndeterminate: false,
-})
 // 接收父组件传过来的参数
 const acceptParams = (params: DrawerProps): void => {
-  if (params.title === '分配角色') {
-    const { list } = params
-    state.allRolesList = list.data.allRolesList
-    state.assignRoles = list.data.assignRoles.map((item: Roles) => item.id)
-    state.isIndeterminate = state.assignRoles.length > 0 ? true : false
-  }
   drawerProps.value = params
   drawerVisible.value = true
 }
@@ -99,4 +102,9 @@ defineExpose({
   acceptParams,
 })
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.info {
+  font-size: 12px;
+  color: #888;
+}
+</style>

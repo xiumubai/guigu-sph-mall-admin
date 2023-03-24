@@ -50,3 +50,20 @@ export namespace Attr {
     id?: number
   }
 }
+
+export namespace Sku {
+  export interface ResSkuList {
+    category3Id: number
+    createTime: string
+    id: number
+    isSale: number
+    price: number
+    skuDefaultImg: string
+    skuDesc: string
+    skuName: string
+    spuId: number
+    tmId: number
+    updateTime: string
+    weight: string
+  }
+}

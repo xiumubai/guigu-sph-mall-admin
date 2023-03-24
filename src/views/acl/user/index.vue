@@ -52,7 +52,7 @@
           link
           icon="Delete"
           v-auth="'btn.User.remove'"
-          @click="deleteUser(scope.row)"
+          @click="handleDelete(scope.row)"
         >
           删除
         </el-button>
@@ -131,7 +131,7 @@ const openDrawer = async (
 }
 
 // *根据id删除用户
-const deleteUser = async (row: AclUser.ResAclUserList) => {
+const handleDelete = async (row: AclUser.ResAclUserList) => {
   await useHandleData(deleteAclUserById, row.id, `删除${row.username}用户`)
   proTable.value.getTableList()
 }

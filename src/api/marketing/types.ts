@@ -16,6 +16,7 @@ export namespace Coupon {
   export interface ResCouponlist {
     benefitAmount: number
     couponName: string
+    couponType: number
     couponTypeString: string
     createTime: string
     expireTime: string
