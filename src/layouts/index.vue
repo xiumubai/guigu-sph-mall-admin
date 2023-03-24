@@ -10,14 +10,13 @@
           <LayoutNavBar />
           <LayoutTabsBar />
         </div>
-        <el-scrollbar class="app-main-container">
+        <div class="app-main-container">
           <LayoutMain />
           <LayoutFooter />
-        </el-scrollbar>
+        </div>
       </div>
     </div>
     <ThemeDrawer />
-    <el-backtop />
   </div>
 </template>
 
@@ -63,6 +62,7 @@ export default defineComponent({
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: auto;
 
   .layout-container-vertical {
     &.fixed {

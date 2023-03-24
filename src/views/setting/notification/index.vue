@@ -1,7 +1,11 @@
 <template>
-  <div>notification</div>
+  <div class="box">notification</div>
 </template>
 
 <script setup lang="ts"></script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.box {
+  height: 1800px;
+}
+</style>
