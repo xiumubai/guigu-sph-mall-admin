@@ -6,7 +6,7 @@ export interface ReqPage {
 
 // * 分页响应参数
 export interface PageRes<T> {
-  items: T[]
+  records: T[]
   pageNum?: number
   pageSize?: number
   total: number

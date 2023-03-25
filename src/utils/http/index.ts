@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-06 11:02:58
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-10 15:37:27
+ * @LastEditTime: 2023-03-25 09:55:02
  * @Description: axios请求封装
  */
 import axios from 'axios'
@@ -98,7 +98,7 @@ service.interceptors.response.use(
 const http = {
   get<T>(
     url: string,
-    params?: any,
+    params?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
     return service.get(url, { params, ...config })
@@ -106,7 +106,7 @@ const http = {
 
   post<T>(
     url: string,
-    data?: any,
+    data?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
     return service.post(url, data, config)
@@ -114,7 +114,7 @@ const http = {
 
   put<T>(
     url: string,
-    data?: any,
+    data?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
     return service.put(url, data, config)
@@ -122,7 +122,7 @@ const http = {
 
   delete<T>(
     url: string,
-    data?: any,
+    data?: object,
     config?: AxiosRequestConfig,
   ): Promise<ResultData<T>> {
     return service.delete(url, { data, ...config })
