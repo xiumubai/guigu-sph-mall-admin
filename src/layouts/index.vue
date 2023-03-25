@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, onBeforeUnmount, computed, ref } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
-
+import { useDebounceFn } from '@vueuse/core'
 import LayoutFooter from './Footer/index.vue'
 import LayoutMain from './Main/index.vue'
 import LayoutSideBar from './SideBar/index.vue'
@@ -42,6 +42,21 @@ export default defineComponent({
   setup() {
     const settingsStore = useSettingsStore()
     const collapse = computed(() => settingsStore.collapse)
+    // 监听窗口大小变化，折叠侧边栏
+    const screenWidth = ref(0)
+    const listeningWindow = useDebounceFn(() => {
+      screenWidth.value = document.body.clientWidth
+      if (!collapse.value && screenWidth.value < 1200)
+        settingsStore.changeCollapse()
+      if (collapse.value && screenWidth.value > 1200)
+        settingsStore.changeCollapse()
+    }, 100)
+
+    window.addEventListener('resize', listeningWindow, false)
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', listeningWindow)
+    })
     return {
       collapse,
     }
