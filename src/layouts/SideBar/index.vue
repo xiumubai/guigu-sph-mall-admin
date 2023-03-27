@@ -1,6 +1,6 @@
 <template>
   <div class="layout-sidebar-container" :class="{ 'is-collapse': collapse }">
-    <logo />
+    <Logo />
 
     <el-scrollbar>
       <el-menu

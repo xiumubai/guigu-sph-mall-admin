@@ -1,8 +1,10 @@
 <template>
   <div class="layout-admin-wrapper">
     <div class="layout-container-vertical fixed">
+      <!-- SubMenu -->
       <LayoutSideBar />
       <div class="layout-main" :class="{ 'is-collapse': collapse }">
+        <!-- Header -->
         <div
           class="layout-header fixed-header"
           :class="{ 'is-collapse': collapse }"
@@ -11,11 +13,14 @@
           <LayoutTabsBar />
         </div>
         <div class="app-main-container">
+          <!-- Main -->
           <LayoutMain />
+          <!-- Footer -->
           <LayoutFooter />
         </div>
       </div>
     </div>
+    <!-- 主题切换 -->
     <ThemeDrawer />
   </div>
 </template>

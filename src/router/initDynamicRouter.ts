@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-24 15:32:50
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-10 15:23:50
+ * @LastEditTime: 2023-03-25 17:34:27
  * @Description:获取路由权限列表
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -37,12 +37,12 @@ router.beforeEach(async (to, from, next) => {
   }
   // 4.如果没有菜单列表，就重新请求菜单列表并添加动态路由
   const authStore = useAuthStore()
-
   authStore.setRouteName(to.name as string)
   if (!authStore.authRouterList.length) {
     await initDynamicRouter()
     return next({ ...to, replace: true })
   }
+  // 5.上述条件都不满足，直接放行
   return next()
 })
 
@@ -80,7 +80,7 @@ const initDynamicRouter = async () => {
         type: 'warning',
         duration: 3000,
       })
-      userStore.resetUser()
+      RESEETSTORE()
       router.replace(LOGIN_URL)
       return Promise.reject('No permission')
     }

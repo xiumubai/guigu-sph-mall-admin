@@ -26,11 +26,6 @@ export const useUserStore = defineStore({
     setUserInfo(userInfo: UserInfo) {
       this.userInfo = userInfo
     },
-    // 重置用户信息
-    resetUser() {
-      this.token = ''
-      this.userInfo = null
-    },
     async GetInfoAction() {
       const { data } = await getUserInfo()
       const { avatar, buttons, name, roles, routes } = data

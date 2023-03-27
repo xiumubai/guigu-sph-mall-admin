@@ -2,8 +2,8 @@
  * @Description: tabsBar 仓库
  * @Autor: 李海波
  * @Date: 2023-03-03 15:37:08
- * @LastEditors: gjzxlihaibo@163.com
- * @LastEditTime: 2023-03-06 10:37:14
+ * @LastEditors: 1547702880@@qq.com
+ * @LastEditTime: 2023-03-27 15:58:56
  */
 import { defineStore } from 'pinia'
 import router from '@/router/index'
@@ -41,7 +41,6 @@ export const useTabsBarStore = defineStore({
     },
     addVisitedView(view: RouteRecordRaw) {
       this.setTabsMenuValue(view.path)
-      // 当前存储的就是的话， 就不存储
       if (this.visitedViews.some((v) => v.path === view.path) || !view.meta)
         return
       this.visitedViews.push(
