@@ -10,7 +10,9 @@ export function hexToRgb(str: any) {
   const reg = /^\#?[0-9A-Fa-f]{6}$/
   if (!reg.test(str)) return ElMessage.warning('输入错误的hex')
   str = str.replace('#', '')
+
   hexs = str.match(/../g)
+
   for (let i = 0; i < 3; i++) hexs[i] = parseInt(hexs[i], 16)
   return hexs
 }
@@ -27,7 +29,9 @@ export function rgbToHex(r: any, g: any, b: any) {
   if (!reg.test(r) || !reg.test(g) || !reg.test(b))
     return ElMessage.warning('输入错误的rgb颜色值')
   const hexs = [r.toString(16), g.toString(16), b.toString(16)]
+
   for (let i = 0; i < 3; i++) if (hexs[i].length == 1) hexs[i] = `0${hexs[i]}`
+
   return `#${hexs.join('')}`
 }
 
@@ -56,7 +60,12 @@ export function getLightColor(color: string, level: number) {
   const reg = /^\#?[0-9A-Fa-f]{6}$/
   if (!reg.test(color)) return ElMessage.warning('输入错误的hex颜色值')
   const rgb = hexToRgb(color)
-  for (let i = 0; i < 3; i++)
+
+  for (let i = 0; i < 3; i++) {
     rgb[i] = Math.round(255 * level + rgb[i] * (1 - level))
+  }
+
+  console.log(rgb)
+
   return rgbToHex(rgb[0], rgb[1], rgb[2])
 }

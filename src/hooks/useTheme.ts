@@ -45,7 +45,7 @@ export const useTheme = () => {
   // 初始化主题
   const initTheme = () => {
     switchDark()
-    changePrimary(themeConfig.value.primary)
+    // changePrimary(themeConfig.value.primary)
   }
   return {
     initTheme,
