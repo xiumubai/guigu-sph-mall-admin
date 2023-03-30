@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-03-10 11:31:11
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-10 18:02:06
+ * @LastEditTime: 2023-03-30 10:22:42
  * @Description: 角色接口
  */
 import http from '@/utils/http'
@@ -37,7 +37,7 @@ export function deleteRole(id: string) {
  * @param { string } id
  * @returns {<PageRes<any>>}
  */
-export function addRole(roleName: string) {
+export function addRole(roleName: object) {
   return http.post<PageRes<any>>(`/admin/acl/role/save`, roleName)
 }
 
@@ -46,6 +46,6 @@ export function addRole(roleName: string) {
  * @param { string } id
  * @returns {<PageRes<any>>}
  */
-export function updateRole(role: string) {
+export function updateRole(role: object) {
   return http.put<PageRes<any>>(`/admin/acl/role/update`, role)
 }

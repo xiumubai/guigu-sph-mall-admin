@@ -53,8 +53,6 @@ const loading = ref<boolean>(false)
 const dialogProps = ref<DialogProps>({ title: '' })
 // 接收父组件参数
 const acceptParams = (params: DialogProps): void => {
-  console.log(params.rowData)
-
   dialogProps.value = params
   dialogVisible.value = true
 }
