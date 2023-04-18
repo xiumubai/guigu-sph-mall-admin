@@ -1,0 +1,39 @@
+<template>
+  <div>
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="id" label="ID"></el-table-column>
+      <el-table-column prop="name" label="姓名"></el-table-column>
+      <el-table-column prop="age" label="年龄"></el-table-column>
+      <el-table-column label="操作">
+        <template v-slot="scope">
+          <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
+          <el-button type="danger" @click="remove(scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      tableData: [
+        { id: 1, name: '张三', age: 20 },
+        { id: 2, name: '李四', age: 25 },
+        { id: 3, name: '王五', age: 30 },
+      ],
+    }
+  },
+  methods: {
+    edit(row) {
+      // 编辑操作
+      console.log(row)
+    },
+    remove(row) {
+      // 删除操作
+      console.log(row)
+    },
+  },
+}
+</script>

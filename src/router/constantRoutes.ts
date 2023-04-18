@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-03-17 16:17:16
+ * @LastEditTime: 2023-04-18 23:31:48
  * @Description: 静态路由
  */
 
@@ -61,6 +61,27 @@ export const staticRoutes: RouteRecordRaw[] = [
       icon: 'DataLine',
       title: '数据大屏',
     },
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: LAYOUT,
+    redirect: '/test/gpt',
+    meta: {
+      title: '测试页面',
+      icon: 'ChatRound',
+    },
+    children: [
+      {
+        path: '/test/gpt',
+        name: 'Test',
+        component: () => import('@/views/test/gpt/index.vue'),
+        meta: {
+          title: 'ChatGPT',
+          affix: true,
+        },
+      },
+    ],
   },
   // 此路由防止控制台出现No match found for location with path的警告
   {
