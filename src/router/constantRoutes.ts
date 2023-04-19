@@ -2,7 +2,7 @@
  * @Author: 朽木白
  * @Date: 2023-02-25 09:19:28
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-04-18 23:31:48
+ * @LastEditTime: 2023-04-19 15:14:00
  * @Description: 静态路由
  */
 
@@ -66,19 +66,46 @@ export const staticRoutes: RouteRecordRaw[] = [
     path: '/test',
     name: 'Test',
     component: LAYOUT,
-    redirect: '/test/gpt',
+    redirect: '/test/list-v1',
     meta: {
       title: '测试页面',
       icon: 'ChatRound',
     },
     children: [
       {
-        path: '/test/gpt',
-        name: 'Test',
-        component: () => import('@/views/test/gpt/index.vue'),
+        path: '/test/list-v1',
+        name: 'List1',
+        component: () => import('@/views/chatgpt/list-v1/index.vue'),
         meta: {
-          title: 'ChatGPT',
-          affix: true,
+          title: '测试表格-v1',
+          icon: 'Menu',
+        },
+      },
+      {
+        path: '/test/list-v2',
+        name: 'List2',
+        component: () => import('@/views/chatgpt/list-v2/index.vue'),
+        meta: {
+          title: '测试表格-v2',
+          icon: 'Menu',
+        },
+      },
+      {
+        path: '/test/list-v3',
+        name: 'List3',
+        component: () => import('@/views/chatgpt/list-v3/index.vue'),
+        meta: {
+          title: '测试表格-v3',
+          icon: 'Menu',
+        },
+      },
+      {
+        path: '/test/list-v4',
+        name: 'List4',
+        component: () => import('@/views/chatgpt/list-v4/index.vue'),
+        meta: {
+          title: '测试表格-v4',
+          icon: 'Menu',
         },
       },
     ],
