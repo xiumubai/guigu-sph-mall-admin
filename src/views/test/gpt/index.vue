@@ -9,8 +9,25 @@
       </el-col>
     </el-row>
     <list :tableData="tableData" @edit="edit" @remove="remove"></list>
-    <el-dialog title="编辑" v-model:visible="dialogVisible">
-      132
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        background: #fff;
+      "
+    >
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 30, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="tableData.length"
+      ></el-pagination>
+    </div>
+    <el-dialog title="编辑" v-model="dialogVisible">
       <VForm :data="dialogData" @submit="submit" @cancel="cancel"></VForm>
     </el-dialog>
   </div>
@@ -19,7 +36,7 @@
 <script>
 import List from './components/List.vue'
 import VForm from './components/Form.vue'
-
+import { getAclUserList } from '@/api'
 export default {
   components: {
     List,
@@ -27,14 +44,12 @@ export default {
   },
   data() {
     return {
-      tableData: [
-        { id: 1, name: '张三', age: 20 },
-        { id: 2, name: '李四', age: 25 },
-        { id: 3, name: '王五', age: 30 },
-      ],
+      tableData: [],
       dialogVisible: false,
       dialogData: null,
       filterText: '',
+      pageSize: 10,
+      pageNum: 1,
     }
   },
   computed: {
@@ -56,6 +71,14 @@ export default {
     },
   },
   methods: {
+    handleSizeChange(val) {
+      this.pageSize = val
+      this.init()
+    },
+    handleCurrentChange(val) {
+      this.pageNum = val
+      this.init()
+    },
     add() {
       this.dialogVisible = true
       this.dialogData = null
@@ -65,10 +88,7 @@ export default {
       this.dialogData = row
     },
     remove(row) {
-      const index = this.tableData.indexOf(row)
-      if (index !== -1) {
-        this.tableData.splice(index, 1)
-      }
+      console.log(row)
     },
     submit(data) {
       if (data.id === 0) {
@@ -87,6 +107,16 @@ export default {
       this.dialogVisible = false
       this.dialogData = null
     },
+    async init() {
+      const res = await getAclUserList({
+        pageNum: this.pageNum,
+        pageSize: this.pageSize,
+      })
+      this.tableData = res.data.records
+    },
+  },
+  async mounted() {
+    this.init()
   },
 }
 </script>
