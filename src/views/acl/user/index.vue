@@ -68,6 +68,7 @@ import { ColumnProps } from '@/components/ProTable/src/types'
 import UserDrawer from './components/UserDrawer.vue'
 import type { AclUser } from '@/api/acl/types'
 import { useHandleData } from '@/hooks/useHandleData'
+import { ElMessage } from 'element-plus'
 import {
   getAclUserList,
   addAclUser,
@@ -132,6 +133,13 @@ const openDrawer = async (
 
 // *根据id删除用户
 const handleDelete = async (row: AclUser.ResAclUserList) => {
+  if (row?.username === 'admin') {
+    ElMessage({
+      type: 'warning',
+      message: `系统用户不允许删除`,
+    })
+    return
+  }
   await useHandleData(deleteAclUserById, row.id, `删除${row.username}用户`)
   proTable.value.getTableList()
 }
