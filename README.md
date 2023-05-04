@@ -4,6 +4,7 @@
 
 查看[更新日志](./CHANGELOG.md)
 
+
 ## 使用方式
 
 ### install
@@ -26,7 +27,9 @@ pnpm run build:prod
 
 ## 预览地址
 
-[http://113.141.166.99/](http://113.141.166.99:3007/#/index)
+[http://113.141.166.99:3007/#/index](http://113.141.166.99:3007/#/index)
+
+账户密码：admin atguigu123
 
 ## 功能介绍
 
