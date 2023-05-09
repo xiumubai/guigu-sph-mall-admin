@@ -73,8 +73,8 @@ const route = useRoute()
 const ruleFormRef = ref<FormInstance>()
 const userStore = useUserStore()
 const ruleForm = reactive({
-  username: '',
-  password: '',
+  username: 'admin',
+  password: 'atguigu123',
 })
 const loading = ref(false)
 const validateUsername = (rule: any, value: string, callback: any) => {
